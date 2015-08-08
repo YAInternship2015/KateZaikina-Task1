@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		80014A5D1B75DCD9004A50FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A5C1B75DCD9004A50FB /* main.m */; };
+		80014A601B75DCD9004A50FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A5F1B75DCD9004A50FB /* AppDelegate.m */; };
+		80014A661B75DCD9004A50FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80014A641B75DCD9004A50FB /* Main.storyboard */; };
+		80014A681B75DCD9004A50FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80014A671B75DCD9004A50FB /* Images.xcassets */; };
+		80014A6B1B75DCD9004A50FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80014A691B75DCD9004A50FB /* LaunchScreen.xib */; };
+		80014A771B75DCD9004A50FB /* Yalantis_Task_1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A761B75DCD9004A50FB /* Yalantis_Task_1Tests.m */; };
+		80014A851B75E0F9004A50FB /* KVZTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A841B75E0F9004A50FB /* KVZTableViewController.m */; };
+		80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A871B75E130004A50FB /* KVZTableViewCell.m */; };
+		80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A8A1B75E160004A50FB /* KVZCoffee.m */; };
+		80014A961B760BE3004A50FB /* americano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A8C1B760BE3004A50FB /* americano.jpg */; };
+		80014A971B760BE3004A50FB /* cappuccino.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A8D1B760BE3004A50FB /* cappuccino.jpg */; };
+		80014A981B760BE3004A50FB /* espresso.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A8E1B760BE3004A50FB /* espresso.jpg */; };
+		80014A991B760BE3004A50FB /* frappe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A8F1B760BE3004A50FB /* frappe.jpg */; };
+		80014A9A1B760BE3004A50FB /* glace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A901B760BE3004A50FB /* glace.jpg */; };
+		80014A9B1B760BE3004A50FB /* irish-coffee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A911B760BE3004A50FB /* irish-coffee.jpg */; };
+		80014A9C1B760BE3004A50FB /* latte.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A921B760BE3004A50FB /* latte.jpg */; };
+		80014A9D1B760BE3004A50FB /* latte-macchiato.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A931B760BE3004A50FB /* latte-macchiato.jpg */; };
+		80014A9E1B760BE3004A50FB /* mocha.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A941B760BE3004A50FB /* mocha.jpg */; };
+		80014A9F1B760BE3004A50FB /* vienne-cappuccino.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80014A711B75DCD9004A50FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80014A4F1B75DCD9004A50FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80014A561B75DCD9004A50FB;
+			remoteInfo = "Yalantis Task 1";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		80014A571B75DCD9004A50FB /* Yalantis Task 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yalantis Task 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80014A5B1B75DCD9004A50FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80014A5C1B75DCD9004A50FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		80014A5E1B75DCD9004A50FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		80014A5F1B75DCD9004A50FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		80014A651B75DCD9004A50FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		80014A671B75DCD9004A50FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		80014A6A1B75DCD9004A50FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		80014A701B75DCD9004A50FB /* Yalantis Task 1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Yalantis Task 1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80014A751B75DCD9004A50FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80014A761B75DCD9004A50FB /* Yalantis_Task_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Yalantis_Task_1Tests.m; sourceTree = "<group>"; };
+		80014A831B75E0F9004A50FB /* KVZTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZTableViewController.h; sourceTree = "<group>"; };
+		80014A841B75E0F9004A50FB /* KVZTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZTableViewController.m; sourceTree = "<group>"; };
+		80014A861B75E130004A50FB /* KVZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZTableViewCell.h; sourceTree = "<group>"; };
+		80014A871B75E130004A50FB /* KVZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZTableViewCell.m; sourceTree = "<group>"; };
+		80014A891B75E160004A50FB /* KVZCoffee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZCoffee.h; sourceTree = "<group>"; };
+		80014A8A1B75E160004A50FB /* KVZCoffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZCoffee.m; sourceTree = "<group>"; };
+		80014A8C1B760BE3004A50FB /* americano.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = americano.jpg; path = coffee/americano.jpg; sourceTree = "<group>"; };
+		80014A8D1B760BE3004A50FB /* cappuccino.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cappuccino.jpg; path = coffee/cappuccino.jpg; sourceTree = "<group>"; };
+		80014A8E1B760BE3004A50FB /* espresso.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = espresso.jpg; path = coffee/espresso.jpg; sourceTree = "<group>"; };
+		80014A8F1B760BE3004A50FB /* frappe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = frappe.jpg; path = coffee/frappe.jpg; sourceTree = "<group>"; };
+		80014A901B760BE3004A50FB /* glace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = glace.jpg; path = coffee/glace.jpg; sourceTree = "<group>"; };
+		80014A911B760BE3004A50FB /* irish-coffee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "irish-coffee.jpg"; path = "coffee/irish-coffee.jpg"; sourceTree = "<group>"; };
+		80014A921B760BE3004A50FB /* latte.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = latte.jpg; path = coffee/latte.jpg; sourceTree = "<group>"; };
+		80014A931B760BE3004A50FB /* latte-macchiato.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "latte-macchiato.jpg"; path = "coffee/latte-macchiato.jpg"; sourceTree = "<group>"; };
+		80014A941B760BE3004A50FB /* mocha.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mocha.jpg; path = coffee/mocha.jpg; sourceTree = "<group>"; };
+		80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "vienne-cappuccino.jpg"; path = "coffee/vienne-cappuccino.jpg"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80014A541B75DCD9004A50FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80014A6D1B75DCD9004A50FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80014A4E1B75DCD9004A50FB = {
+			isa = PBXGroup;
+			children = (
+				80014A591B75DCD9004A50FB /* Yalantis Task 1 */,
+				80014A731B75DCD9004A50FB /* Yalantis Task 1Tests */,
+				80014A581B75DCD9004A50FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80014A581B75DCD9004A50FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80014A571B75DCD9004A50FB /* Yalantis Task 1.app */,
+				80014A701B75DCD9004A50FB /* Yalantis Task 1Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80014A591B75DCD9004A50FB /* Yalantis Task 1 */ = {
+			isa = PBXGroup;
+			children = (
+				80014A801B75DCE6004A50FB /* images */,
+				80014A831B75E0F9004A50FB /* KVZTableViewController.h */,
+				80014A841B75E0F9004A50FB /* KVZTableViewController.m */,
+				80014A861B75E130004A50FB /* KVZTableViewCell.h */,
+				80014A871B75E130004A50FB /* KVZTableViewCell.m */,
+				80014A891B75E160004A50FB /* KVZCoffee.h */,
+				80014A8A1B75E160004A50FB /* KVZCoffee.m */,
+				80014A5F1B75DCD9004A50FB /* AppDelegate.m */,
+				80014A5E1B75DCD9004A50FB /* AppDelegate.h */,
+				80014A641B75DCD9004A50FB /* Main.storyboard */,
+				80014A671B75DCD9004A50FB /* Images.xcassets */,
+				80014A691B75DCD9004A50FB /* LaunchScreen.xib */,
+				80014A5A1B75DCD9004A50FB /* Supporting Files */,
+			);
+			path = "Yalantis Task 1";
+			sourceTree = "<group>";
+		};
+		80014A5A1B75DCD9004A50FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				80014A5B1B75DCD9004A50FB /* Info.plist */,
+				80014A5C1B75DCD9004A50FB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80014A731B75DCD9004A50FB /* Yalantis Task 1Tests */ = {
+			isa = PBXGroup;
+			children = (
+				80014A761B75DCD9004A50FB /* Yalantis_Task_1Tests.m */,
+				80014A741B75DCD9004A50FB /* Supporting Files */,
+			);
+			path = "Yalantis Task 1Tests";
+			sourceTree = "<group>";
+		};
+		80014A741B75DCD9004A50FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				80014A751B75DCD9004A50FB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80014A801B75DCE6004A50FB /* images */ = {
+			isa = PBXGroup;
+			children = (
+				80014A8C1B760BE3004A50FB /* americano.jpg */,
+				80014A8D1B760BE3004A50FB /* cappuccino.jpg */,
+				80014A8E1B760BE3004A50FB /* espresso.jpg */,
+				80014A8F1B760BE3004A50FB /* frappe.jpg */,
+				80014A901B760BE3004A50FB /* glace.jpg */,
+				80014A911B760BE3004A50FB /* irish-coffee.jpg */,
+				80014A921B760BE3004A50FB /* latte.jpg */,
+				80014A931B760BE3004A50FB /* latte-macchiato.jpg */,
+				80014A941B760BE3004A50FB /* mocha.jpg */,
+				80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		80014A561B75DCD9004A50FB /* Yalantis Task 1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80014A7A1B75DCD9004A50FB /* Build configuration list for PBXNativeTarget "Yalantis Task 1" */;
+			buildPhases = (
+				80014A531B75DCD9004A50FB /* Sources */,
+				80014A541B75DCD9004A50FB /* Frameworks */,
+				80014A551B75DCD9004A50FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Yalantis Task 1";
+			productName = "Yalantis Task 1";
+			productReference = 80014A571B75DCD9004A50FB /* Yalantis Task 1.app */;
+			productType = "com.apple.product-type.application";
+		};
+		80014A6F1B75DCD9004A50FB /* Yalantis Task 1Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80014A7D1B75DCD9004A50FB /* Build configuration list for PBXNativeTarget "Yalantis Task 1Tests" */;
+			buildPhases = (
+				80014A6C1B75DCD9004A50FB /* Sources */,
+				80014A6D1B75DCD9004A50FB /* Frameworks */,
+				80014A6E1B75DCD9004A50FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80014A721B75DCD9004A50FB /* PBXTargetDependency */,
+			);
+			name = "Yalantis Task 1Tests";
+			productName = "Yalantis Task 1Tests";
+			productReference = 80014A701B75DCD9004A50FB /* Yalantis Task 1Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80014A4F1B75DCD9004A50FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = kateryna.zaikina;
+				TargetAttributes = {
+					80014A561B75DCD9004A50FB = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					80014A6F1B75DCD9004A50FB = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 80014A561B75DCD9004A50FB;
+					};
+				};
+			};
+			buildConfigurationList = 80014A521B75DCD9004A50FB /* Build configuration list for PBXProject "Yalantis Task 1" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 80014A4E1B75DCD9004A50FB;
+			productRefGroup = 80014A581B75DCD9004A50FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80014A561B75DCD9004A50FB /* Yalantis Task 1 */,
+				80014A6F1B75DCD9004A50FB /* Yalantis Task 1Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80014A551B75DCD9004A50FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80014A9C1B760BE3004A50FB /* latte.jpg in Resources */,
+				80014A661B75DCD9004A50FB /* Main.storyboard in Resources */,
+				80014A9F1B760BE3004A50FB /* vienne-cappuccino.jpg in Resources */,
+				80014A9B1B760BE3004A50FB /* irish-coffee.jpg in Resources */,
+				80014A991B760BE3004A50FB /* frappe.jpg in Resources */,
+				80014A6B1B75DCD9004A50FB /* LaunchScreen.xib in Resources */,
+				80014A971B760BE3004A50FB /* cappuccino.jpg in Resources */,
+				80014A9A1B760BE3004A50FB /* glace.jpg in Resources */,
+				80014A981B760BE3004A50FB /* espresso.jpg in Resources */,
+				80014A9E1B760BE3004A50FB /* mocha.jpg in Resources */,
+				80014A681B75DCD9004A50FB /* Images.xcassets in Resources */,
+				80014A9D1B760BE3004A50FB /* latte-macchiato.jpg in Resources */,
+				80014A961B760BE3004A50FB /* americano.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80014A6E1B75DCD9004A50FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80014A531B75DCD9004A50FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80014A851B75E0F9004A50FB /* KVZTableViewController.m in Sources */,
+				80014A601B75DCD9004A50FB /* AppDelegate.m in Sources */,
+				80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */,
+				80014A5D1B75DCD9004A50FB /* main.m in Sources */,
+				80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80014A6C1B75DCD9004A50FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80014A771B75DCD9004A50FB /* Yalantis_Task_1Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80014A721B75DCD9004A50FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80014A561B75DCD9004A50FB /* Yalantis Task 1 */;
+			targetProxy = 80014A711B75DCD9004A50FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		80014A641B75DCD9004A50FB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80014A651B75DCD9004A50FB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		80014A691B75DCD9004A50FB /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80014A6A1B75DCD9004A50FB /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		80014A781B75DCD9004A50FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		80014A791B75DCD9004A50FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80014A7B1B75DCD9004A50FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Yalantis Task 1/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		80014A7C1B75DCD9004A50FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Yalantis Task 1/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		80014A7E1B75DCD9004A50FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Yalantis Task 1Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yalantis Task 1.app/Yalantis Task 1";
+			};
+			name = Debug;
+		};
+		80014A7F1B75DCD9004A50FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Yalantis Task 1Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yalantis Task 1.app/Yalantis Task 1";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80014A521B75DCD9004A50FB /* Build configuration list for PBXProject "Yalantis Task 1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80014A781B75DCD9004A50FB /* Debug */,
+				80014A791B75DCD9004A50FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80014A7A1B75DCD9004A50FB /* Build configuration list for PBXNativeTarget "Yalantis Task 1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80014A7B1B75DCD9004A50FB /* Debug */,
+				80014A7C1B75DCD9004A50FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80014A7D1B75DCD9004A50FB /* Build configuration list for PBXNativeTarget "Yalantis Task 1Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80014A7E1B75DCD9004A50FB /* Debug */,
+				80014A7F1B75DCD9004A50FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 80014A4F1B75DCD9004A50FB /* Project object */;
+}
