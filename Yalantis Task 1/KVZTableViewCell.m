@@ -10,6 +10,7 @@
 
 @implementation KVZTableViewCell
 
+#warning эти методы не нужны, так как вы не меняете их поведение
 - (void)awakeFromNib {
     // Initialization code
 }

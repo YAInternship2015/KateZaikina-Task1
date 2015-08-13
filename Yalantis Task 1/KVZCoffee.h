@@ -13,6 +13,7 @@
 @property (strong, nonatomic, readonly) NSString *typeName;
 @property (strong, nonatomic, readonly) NSString *imageName;
 
+#warning "and" в именах методов писать непринято. И неверное форматирование. - (id)initWithTypeName:(NSString *)typeName imageName:(NSString *)imageName;
 - (id) initWithTypeName: (NSString *) typeName andImageName: (NSString *) imageName;
 
 @end

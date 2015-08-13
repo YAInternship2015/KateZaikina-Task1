@@ -20,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+#warning В аппделегате должно быть минимум кода. В идеале его здесь не должно быть вообще. Создание моделей должно переехать в объект-датасорс, который будет создавать и хранить вью контроллер
     KVZCoffee *espresso = [[KVZCoffee alloc] initWithTypeName:@"espresso" andImageName:@"espresso.jpg"];
     KVZCoffee *americano = [[KVZCoffee alloc] initWithTypeName:@"americano" andImageName:@"americano.jpg"];
     KVZCoffee *cappuccino = [[KVZCoffee alloc] initWithTypeName:@"cappuccino" andImageName:@"cappuccino.jpg"];

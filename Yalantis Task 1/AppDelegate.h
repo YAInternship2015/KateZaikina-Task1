@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#warning Не нашел у Вас файла .gitignore
+#warning Хочу заметить, что неплохо было бы соблюдать структуру проекта, то есть контроллеры должны находиться в папке Controllers, ячейки - в папке Views -> Cells, модели - в Models и т.д. Картинки должны находиться в папке Resources
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
