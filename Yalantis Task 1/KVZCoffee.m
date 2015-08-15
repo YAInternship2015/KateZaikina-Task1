@@ -8,23 +8,15 @@
 
 #import "KVZCoffee.h"
 
-#warning снова куча пустых строк
-
 @implementation KVZCoffee
 
-- (id) initWithTypeName: (NSString *) typeName andImageName: (NSString *) imageName {
-#warning и тут снова куча пустых строк
+- (id)initWithTypeName:(NSString *)typeName imageName:(NSString *)imageName {
     self = [super init];
-    
     if (self) {
-        
         _typeName = typeName;
         _imageName = imageName;
     }
-
     return self;
 }
-
-
 
 @end

@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface KVZTableViewController : UITableViewController
 
-@property (nonatomic, strong) id <UITableViewDataSource> tableViewDataSource;
+@property (nonatomic, strong) id<UITableViewDataSource> tableViewDataSource;
 
 @end

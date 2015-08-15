@@ -10,5 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface KVZDataSourceFactory : NSObject
-+(id <UITableViewDataSource>) coffeeTableDataSource;
+
++(id <UITableViewDataSource>)coffeeTableDataSource;
+
 @end

@@ -15,14 +15,13 @@
 
 -(id) initWithArray: (NSArray *)array {
     self = [super init];
-    
     if (self) {
         _array = array;
     }
     return self;
 }
 
-#pragma mark - <UITableViewDataSource>
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.array count];
@@ -30,16 +29,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"coffeeCell";
-    
     KVZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-#warning здесь не нужна пустая строка
-    KVZCoffee *coffee = [self.array objectAtIndex:indexPath.row];
-#warning здесь не нужна пустая строка
     
+    KVZCoffee *coffee = [self.array objectAtIndex:indexPath.row];
     cell.coffeeImageView.image = [UIImage imageNamed:coffee.imageName];
-#warning здесь не нужна пустая строка
     cell.coffeeTypeLabel.text = coffee.typeName;
-#warning здесь не нужна пустая строка
+   
     return cell;
 }
 

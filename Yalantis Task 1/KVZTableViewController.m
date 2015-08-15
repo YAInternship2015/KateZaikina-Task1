@@ -8,11 +8,6 @@
 
 #import "KVZTableViewController.h"
 
-
-@interface KVZTableViewController ()
-
-@end
-
 @implementation KVZTableViewController
 
 - (void)viewDidLoad {
@@ -23,7 +18,7 @@
 
 - (void)setTableViewDataSource:(id<UITableViewDataSource>)tableViewDataSource {
     _tableViewDataSource = tableViewDataSource;
-    self.tableView.dataSource = _tableViewDataSource;
+    self.tableView.dataSource = tableViewDataSource;
 }
 
 @end

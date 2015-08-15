@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong, readonly) NSArray *array;
 
--(id) initWithArray: (NSArray *)array;
+-(id)initWithArray:(NSArray *)array;
 
 @end

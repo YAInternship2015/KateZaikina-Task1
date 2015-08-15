@@ -14,11 +14,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
     id<UITableViewDataSource> coffeeArray = [KVZDataSourceFactory coffeeTableDataSource];
     KVZTableViewController *rootViewController = (KVZTableViewController *) self.window.rootViewController;
     rootViewController.tableViewDataSource = coffeeArray;
+    
     return YES;
 }
 
