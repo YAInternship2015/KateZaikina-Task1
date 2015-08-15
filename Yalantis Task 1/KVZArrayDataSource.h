@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
 @interface KVZArrayDataSource : NSObject <UITableViewDataSource>
 
 @property (nonatomic, strong, readonly) NSArray *array;

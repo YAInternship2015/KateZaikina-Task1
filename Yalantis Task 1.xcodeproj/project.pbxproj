@@ -113,22 +113,15 @@
 		80014A591B75DCD9004A50FB /* Yalantis Task 1 */ = {
 			isa = PBXGroup;
 			children = (
-				80014A801B75DCE6004A50FB /* images */,
-				80014A831B75E0F9004A50FB /* KVZTableViewController.h */,
-				80014A841B75E0F9004A50FB /* KVZTableViewController.m */,
-				80014A861B75E130004A50FB /* KVZTableViewCell.h */,
-				80014A871B75E130004A50FB /* KVZTableViewCell.m */,
-				80014A891B75E160004A50FB /* KVZCoffee.h */,
-				80014A8A1B75E160004A50FB /* KVZCoffee.m */,
-				8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */,
-				8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */,
-				80014A5F1B75DCD9004A50FB /* AppDelegate.m */,
+				8085E40A1B7F85ED00B0C261 /* Models */,
+				8085E40C1B7F85FD00B0C261 /* Views */,
+				8085E40B1B7F85F500B0C261 /* Controllers */,
+				8085E40E1B7F861A00B0C261 /* Resources */,
 				80014A5E1B75DCD9004A50FB /* AppDelegate.h */,
-				8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */,
-				8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */,
+				80014A5F1B75DCD9004A50FB /* AppDelegate.m */,
 				80014A641B75DCD9004A50FB /* Main.storyboard */,
-				80014A671B75DCD9004A50FB /* Images.xcassets */,
 				80014A691B75DCD9004A50FB /* LaunchScreen.xib */,
+				80014A671B75DCD9004A50FB /* Images.xcassets */,
 				80014A5A1B75DCD9004A50FB /* Supporting Files */,
 			);
 			path = "Yalantis Task 1";
@@ -175,6 +168,53 @@
 				80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		8085E40A1B7F85ED00B0C261 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				80014A891B75E160004A50FB /* KVZCoffee.h */,
+				80014A8A1B75E160004A50FB /* KVZCoffee.m */,
+				8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */,
+				8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */,
+				8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */,
+				8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8085E40B1B7F85F500B0C261 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				80014A831B75E0F9004A50FB /* KVZTableViewController.h */,
+				80014A841B75E0F9004A50FB /* KVZTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8085E40C1B7F85FD00B0C261 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8085E40D1B7F860B00B0C261 /* Cells */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8085E40D1B7F860B00B0C261 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				80014A861B75E130004A50FB /* KVZTableViewCell.h */,
+				80014A871B75E130004A50FB /* KVZTableViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		8085E40E1B7F861A00B0C261 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80014A801B75DCE6004A50FB /* images */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
