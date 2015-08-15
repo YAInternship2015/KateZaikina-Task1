@@ -49,8 +49,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="coffeeImageView" destination="5wp-DJ-h3d" id="JY0-Wa-6gs"/>
-                                    <outlet property="coffeeTypeLabel" destination="w5Y-vw-b6T" id="lrV-dd-Gyq"/>
+                                    <outlet property="coffeeImageView" destination="5wp-DJ-h3d" id="5yJ-57-dUF"/>
+                                    <outlet property="coffeeTypeLabel" destination="w5Y-vw-b6T" id="Owv-dx-Z12"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

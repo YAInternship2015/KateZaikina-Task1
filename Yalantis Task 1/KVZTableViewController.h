@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface KVZTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSArray *coffeeArray;
+@property (nonatomic, strong) id<UITableViewDataSource> tableViewDataSource;
 
 @end

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface KVZTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *coffeeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *coffeeTypeLabel;
+
+@property (nonatomic, weak) IBOutlet UIImageView *coffeeImageView;
+@property (nonatomic, weak) IBOutlet UILabel *coffeeTypeLabel;
+
 @end
