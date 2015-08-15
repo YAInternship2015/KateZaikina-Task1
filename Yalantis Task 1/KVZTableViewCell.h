@@ -10,8 +10,7 @@
 
 @interface KVZTableViewCell : UITableViewCell
 
-#warning эти свойства нет необходимости показывать в *.h файле. Если вы реализуете метод setupWith<Имя вашей модели>:, то эти свойства переедут в *.m файл. Не нужно показывать в *.h файле ничего лишнего, только то, что необходимо для работы других объектов с данным классом
-
 @property (weak, nonatomic) IBOutlet UIImageView *coffeeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *coffeeTypeLabel;
+
 @end

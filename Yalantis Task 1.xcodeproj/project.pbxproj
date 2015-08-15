@@ -26,6 +26,8 @@
 		80014A9D1B760BE3004A50FB /* latte-macchiato.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A931B760BE3004A50FB /* latte-macchiato.jpg */; };
 		80014A9E1B760BE3004A50FB /* mocha.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A941B760BE3004A50FB /* mocha.jpg */; };
 		80014A9F1B760BE3004A50FB /* vienne-cappuccino.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */; };
+		8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */; };
+		8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,10 @@
 		80014A931B760BE3004A50FB /* latte-macchiato.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "latte-macchiato.jpg"; path = "coffee/latte-macchiato.jpg"; sourceTree = "<group>"; };
 		80014A941B760BE3004A50FB /* mocha.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mocha.jpg; path = coffee/mocha.jpg; sourceTree = "<group>"; };
 		80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "vienne-cappuccino.jpg"; path = "coffee/vienne-cappuccino.jpg"; sourceTree = "<group>"; };
+		8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZArrayDataSource.h; sourceTree = "<group>"; };
+		8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZArrayDataSource.m; sourceTree = "<group>"; };
+		8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZDataSourceFactory.h; sourceTree = "<group>"; };
+		8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZDataSourceFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +120,12 @@
 				80014A871B75E130004A50FB /* KVZTableViewCell.m */,
 				80014A891B75E160004A50FB /* KVZCoffee.h */,
 				80014A8A1B75E160004A50FB /* KVZCoffee.m */,
+				8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */,
+				8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */,
 				80014A5F1B75DCD9004A50FB /* AppDelegate.m */,
 				80014A5E1B75DCD9004A50FB /* AppDelegate.h */,
+				8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */,
+				8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */,
 				80014A641B75DCD9004A50FB /* Main.storyboard */,
 				80014A671B75DCD9004A50FB /* Images.xcassets */,
 				80014A691B75DCD9004A50FB /* LaunchScreen.xib */,
@@ -277,8 +287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */,
 				80014A851B75E0F9004A50FB /* KVZTableViewController.m in Sources */,
 				80014A601B75DCD9004A50FB /* AppDelegate.m in Sources */,
+				8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */,
 				80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */,
 				80014A5D1B75DCD9004A50FB /* main.m in Sources */,
 				80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */,
@@ -478,6 +490,7 @@
 				80014A7C1B75DCD9004A50FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80014A7D1B75DCD9004A50FB /* Build configuration list for PBXNativeTarget "Yalantis Task 1Tests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +499,7 @@
 				80014A7F1B75DCD9004A50FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
