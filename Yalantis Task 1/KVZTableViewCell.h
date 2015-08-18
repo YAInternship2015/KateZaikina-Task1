@@ -10,6 +10,8 @@
 
 @interface KVZTableViewCell : UITableViewCell
 
+#warning нет необходимости показывать здесь аутлеты. Это уже детали внутренней реализации. Достаточно реализовать метод setupWithCoffie:, в котором ячейка будет себя сама заполнять моделью
+
 @property (nonatomic, weak) IBOutlet UIImageView *coffeeImageView;
 @property (nonatomic, weak) IBOutlet UILabel *coffeeTypeLabel;
 

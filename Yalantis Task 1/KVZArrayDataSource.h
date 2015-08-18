@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong, readonly) NSArray *array;
 
+#warning "- (id)initWithArray:(NSArray *)array;"
 -(id)initWithArray:(NSArray *)array;
 
 @end

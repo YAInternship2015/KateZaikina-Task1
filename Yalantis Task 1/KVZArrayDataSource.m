@@ -11,7 +11,7 @@
 #import "KVZCoffee.h"
 
 @implementation KVZArrayDataSource
-
+#warning "- (id)initWithArray:(NSArray *)array {"
 -(id) initWithArray: (NSArray *)array {
     self = [super init];
     if (self) {
@@ -28,6 +28,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"coffeeCell";
+#warning такой код иногда может падать, потому что метод dequeueReusableCellWithIdentifier: иногда возвращает nil. Лучше использовать dequeueReusableCellWithIdentifier:forIndexPath:
     KVZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     KVZCoffee *coffee = [self.array objectAtIndex:indexPath.row];
