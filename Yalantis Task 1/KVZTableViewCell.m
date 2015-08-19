@@ -8,6 +8,18 @@
 
 #import "KVZTableViewCell.h"
 
+@interface KVZTableViewCell ()
+
+@property (nonatomic, weak) IBOutlet UIImageView *coffeeImageView;
+@property (nonatomic, weak) IBOutlet UILabel *coffeeTypeLabel;
+
+@end
+
 @implementation KVZTableViewCell
+
+- (void)setUpWithCoffee:(KVZCoffee *)coffee {
+    self.coffeeImageView.image = [UIImage imageNamed:coffee.imageName];
+    self.coffeeTypeLabel.text = coffee.typeName;
+}
 
 @end

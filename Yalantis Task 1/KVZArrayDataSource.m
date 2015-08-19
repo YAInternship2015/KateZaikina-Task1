@@ -9,13 +9,14 @@
 #import "KVZArrayDataSource.h"
 #import "KVZTableViewCell.h"
 #import "KVZCoffee.h"
+#import "KVZDataSourceFactory.h"
 
 @implementation KVZArrayDataSource
-#warning "- (id)initWithArray:(NSArray *)array {"
--(id) initWithArray: (NSArray *)array {
+
+-(id) init {
     self = [super init];
     if (self) {
-        _array = array;
+        self.array = [KVZDataSourceFactory coffeeModelArray];
     }
     return self;
 }
@@ -28,13 +29,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"coffeeCell";
-#warning такой код иногда может падать, потому что метод dequeueReusableCellWithIdentifier: иногда возвращает nil. Лучше использовать dequeueReusableCellWithIdentifier:forIndexPath:
-    KVZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    KVZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     KVZCoffee *coffee = [self.array objectAtIndex:indexPath.row];
-    cell.coffeeImageView.image = [UIImage imageNamed:coffee.imageName];
-    cell.coffeeTypeLabel.text = coffee.typeName;
-   
+    [cell setUpWithCoffee:coffee];
+    
     return cell;
 }
 

@@ -11,8 +11,6 @@
 
 @interface KVZDataSourceFactory : NSObject
 
-#warning здесь надо поправить форматирование + (id<UITableViewDataSource>)coffeeTableDataSource;
-#warning идея с фабрикой правильная, но лучше бы фабрика создавала не датасорс, а модели. И обращался бы к ней за моделями сам датасорс, который создается контроллером
-+(id <UITableViewDataSource>)coffeeTableDataSource;
++ (NSArray *)coffeeModelArray;
 
 @end

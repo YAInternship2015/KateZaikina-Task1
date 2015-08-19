@@ -8,11 +8,10 @@
 
 #import "KVZDataSourceFactory.h"
 #import "KVZCoffee.h"
-#import "KVZArrayDataSource.h"
 
 @implementation KVZDataSourceFactory
 
-+(id <UITableViewDataSource>)coffeeTableDataSource {
++(NSArray *)coffeeModelArray {
     KVZCoffee *espresso = [[KVZCoffee alloc] initWithTypeName:@"espresso" imageName:@"espresso.jpg"];
     KVZCoffee *americano = [[KVZCoffee alloc] initWithTypeName:@"americano" imageName:@"americano.jpg"];
     KVZCoffee *cappuccino = [[KVZCoffee alloc] initWithTypeName:@"cappuccino" imageName:@"cappuccino.jpg"];
@@ -25,7 +24,7 @@
     KVZCoffee *viennecoffee = [[KVZCoffee alloc] initWithTypeName:@"vienne-coffee" imageName:@"vienne-cappuccino.jpg"];
     NSArray *arrayOfCoffee = [NSArray arrayWithObjects:espresso, americano, cappuccino, latte, lattemacchiato, mocha, glace, irishcoffee, frappe, viennecoffee, nil];
     
-    return [[KVZArrayDataSource alloc] initWithArray:arrayOfCoffee];;
+    return arrayOfCoffee;
 }
 
 @end

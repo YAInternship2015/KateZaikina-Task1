@@ -7,17 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "KVZTableViewController.h"
-#import "KVZDataSourceFactory.h"
-#import "KVZArrayDataSource.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    id<UITableViewDataSource> coffeeArray = [KVZDataSourceFactory coffeeTableDataSource];
-    KVZTableViewController *rootViewController = (KVZTableViewController *) self.window.rootViewController;
-    rootViewController.tableViewDataSource = coffeeArray;
-    
     return YES;
 }
 

@@ -16,10 +16,4 @@
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 }
 
-#warning если есть желание, попробуйте подсунуть датасорс прямо в сториборде. Тогда кода вообще не понадобится. В сцену контроллера в сториборде можно добавить просто Object, задать ему класс Вашего датасорса, и прилинковать аутлет таблицы datasource к этому Object
-- (void)setTableViewDataSource:(id<UITableViewDataSource>)tableViewDataSource {
-    _tableViewDataSource = tableViewDataSource;
-    self.tableView.dataSource = tableViewDataSource;
-}
-
 @end

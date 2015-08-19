@@ -11,9 +11,6 @@
 
 @interface KVZArrayDataSource : NSObject <UITableViewDataSource>
 
-@property (nonatomic, strong, readonly) NSArray *array;
-
-#warning "- (id)initWithArray:(NSArray *)array;"
--(id)initWithArray:(NSArray *)array;
+@property (nonatomic, strong) NSArray *array;
 
 @end

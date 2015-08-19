@@ -10,6 +10,4 @@
 
 @interface KVZTableViewController : UITableViewController
 
-@property (nonatomic, strong) id<UITableViewDataSource> tableViewDataSource;
-
 @end
