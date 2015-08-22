@@ -26,6 +26,8 @@
 		80014A9D1B760BE3004A50FB /* latte-macchiato.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A931B760BE3004A50FB /* latte-macchiato.jpg */; };
 		80014A9E1B760BE3004A50FB /* mocha.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A941B760BE3004A50FB /* mocha.jpg */; };
 		80014A9F1B760BE3004A50FB /* vienne-cappuccino.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */; };
+		8002B4161B8651D400539F5A /* KVZCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8002B4151B8651D400539F5A /* KVZCollectionViewCell.m */; };
+		8002B4221B883DFF00539F5A /* KVZCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8002B4211B883DFF00539F5A /* KVZCollectionViewController.m */; };
 		8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */; };
 		8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */; };
 /* End PBXBuildFile section */
@@ -68,6 +70,10 @@
 		80014A931B760BE3004A50FB /* latte-macchiato.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "latte-macchiato.jpg"; path = "coffee/latte-macchiato.jpg"; sourceTree = "<group>"; };
 		80014A941B760BE3004A50FB /* mocha.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mocha.jpg; path = coffee/mocha.jpg; sourceTree = "<group>"; };
 		80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "vienne-cappuccino.jpg"; path = "coffee/vienne-cappuccino.jpg"; sourceTree = "<group>"; };
+		8002B4141B8651D400539F5A /* KVZCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZCollectionViewCell.h; sourceTree = "<group>"; };
+		8002B4151B8651D400539F5A /* KVZCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZCollectionViewCell.m; sourceTree = "<group>"; };
+		8002B4201B883DFF00539F5A /* KVZCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KVZCollectionViewController.h; path = ../KVZCollectionViewController.h; sourceTree = "<group>"; };
+		8002B4211B883DFF00539F5A /* KVZCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KVZCollectionViewController.m; path = ../KVZCollectionViewController.m; sourceTree = "<group>"; };
 		8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZArrayDataSource.h; sourceTree = "<group>"; };
 		8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZArrayDataSource.m; sourceTree = "<group>"; };
 		8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZDataSourceFactory.h; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 			children = (
 				80014A831B75E0F9004A50FB /* KVZTableViewController.h */,
 				80014A841B75E0F9004A50FB /* KVZTableViewController.m */,
+				8002B4201B883DFF00539F5A /* KVZCollectionViewController.h */,
+				8002B4211B883DFF00539F5A /* KVZCollectionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -205,6 +213,8 @@
 			children = (
 				80014A861B75E130004A50FB /* KVZTableViewCell.h */,
 				80014A871B75E130004A50FB /* KVZTableViewCell.m */,
+				8002B4141B8651D400539F5A /* KVZCollectionViewCell.h */,
+				8002B4151B8651D400539F5A /* KVZCollectionViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -334,6 +344,8 @@
 				80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */,
 				80014A5D1B75DCD9004A50FB /* main.m in Sources */,
 				80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */,
+				8002B4161B8651D400539F5A /* KVZCollectionViewCell.m in Sources */,
+				8002B4221B883DFF00539F5A /* KVZCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

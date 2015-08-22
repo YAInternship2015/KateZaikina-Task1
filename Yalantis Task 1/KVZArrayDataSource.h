@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface KVZArrayDataSource : NSObject <UITableViewDataSource>
+@interface KVZArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSArray *array;
 

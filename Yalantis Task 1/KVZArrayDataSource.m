@@ -10,6 +10,7 @@
 #import "KVZTableViewCell.h"
 #import "KVZCoffee.h"
 #import "KVZDataSourceFactory.h"
+#import "KVZCollectionViewCell.h"
 
 @implementation KVZArrayDataSource
 
@@ -36,5 +37,27 @@
     
     return cell;
 }
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self.array count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"collectionCoffeeCell";
+    KVZCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    KVZCoffee *coffee = [self.array objectAtIndex:indexPath.item];
+    [cell setUpWithCoffeeImage:coffee];
+        
+    return cell;
+}
+
 
 @end
