@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>94FD14CA-2256-4800-84EC-6CC509F08953</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Yalantis Task 1</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>EAAFD369E7ACA85D6070FFA92B05964DD1C6DD90</key>
 		<string>https://github.com/YAInternship2015/KateZaikina-Task1.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Yalantis Task 1.xcodeproj</string>
+	<string>Yalantis Task 1.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>EAAFD369E7ACA85D6070FFA92B05964DD1C6DD90</key>

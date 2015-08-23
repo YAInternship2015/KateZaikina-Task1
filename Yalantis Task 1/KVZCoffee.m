@@ -8,23 +8,15 @@
 
 #import "KVZCoffee.h"
 
-
-
 @implementation KVZCoffee
 
-- (id) initWithTypeName: (NSString *) typeName andImageName: (NSString *) imageName {
-
+- (id)initWithTypeName:(NSString *)typeName imageName:(NSString *)imageName {
     self = [super init];
-    
     if (self) {
-        
         _typeName = typeName;
         _imageName = imageName;
     }
-
     return self;
 }
-
-
 
 @end

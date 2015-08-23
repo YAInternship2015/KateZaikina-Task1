@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KVZCoffee.h"
 
 @interface KVZTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *coffeeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *coffeeTypeLabel;
+
+- (void)setUpWithCoffee:(KVZCoffee *)coffee;
+
 @end

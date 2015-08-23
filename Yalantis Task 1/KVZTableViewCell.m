@@ -8,16 +8,18 @@
 
 #import "KVZTableViewCell.h"
 
+@interface KVZTableViewCell ()
+
+@property (nonatomic, weak) IBOutlet UIImageView *coffeeImageView;
+@property (nonatomic, weak) IBOutlet UILabel *coffeeTypeLabel;
+
+@end
+
 @implementation KVZTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setUpWithCoffee:(KVZCoffee *)coffee {
+    self.coffeeImageView.image = [UIImage imageNamed:coffee.imageName];
+    self.coffeeTypeLabel.text = coffee.typeName;
 }
 
 @end

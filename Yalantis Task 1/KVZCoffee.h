@@ -10,9 +10,9 @@
 
 @interface KVZCoffee : NSObject
 
-@property (strong, nonatomic, readonly) NSString *typeName;
-@property (strong, nonatomic, readonly) NSString *imageName;
+@property (nonatomic, strong, readonly) NSString *typeName;
+@property (nonatomic, strong, readonly) NSString *imageName;
 
-- (id) initWithTypeName: (NSString *) typeName andImageName: (NSString *) imageName;
+- (id)initWithTypeName:(NSString *)typeName imageName:(NSString *)imageName;
 
 @end
