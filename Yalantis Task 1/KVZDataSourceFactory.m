@@ -12,19 +12,19 @@
 @implementation KVZDataSourceFactory
 
 +(NSArray *)coffeeModelArray {
-    KVZCoffee *espresso = [[KVZCoffee alloc] initWithTypeName:@"espresso" imageName:@"espresso.jpg"];
-    KVZCoffee *americano = [[KVZCoffee alloc] initWithTypeName:@"americano" imageName:@"americano.jpg"];
-    KVZCoffee *cappuccino = [[KVZCoffee alloc] initWithTypeName:@"cappuccino" imageName:@"cappuccino.jpg"];
-    KVZCoffee *latte = [[KVZCoffee alloc] initWithTypeName:@"latte" imageName:@"latte.jpg"];
-    KVZCoffee *lattemacchiato = [[KVZCoffee alloc] initWithTypeName:@"latte-macchiato" imageName:@"latte-macchiato.jpg"];
-    KVZCoffee *mocha = [[KVZCoffee alloc] initWithTypeName:@"mocha" imageName:@"mocha.jpg"];
-    KVZCoffee *glace = [[KVZCoffee alloc] initWithTypeName:@"glace" imageName:@"glace.jpg"];
-    KVZCoffee *irishcoffee = [[KVZCoffee alloc] initWithTypeName:@"irish-coffee" imageName:@"irish-coffee.jpg"];
-    KVZCoffee *frappe = [[KVZCoffee alloc] initWithTypeName:@"frappe" imageName:@"frappe.jpg"];
-    KVZCoffee *viennecoffee = [[KVZCoffee alloc] initWithTypeName:@"vienne-coffee" imageName:@"vienne-cappuccino.jpg"];
-    NSArray *arrayOfCoffee = [NSArray arrayWithObjects:espresso, americano, cappuccino, latte, lattemacchiato, mocha, glace, irishcoffee, frappe, viennecoffee, nil];
+    NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
+    NSArray *coffeeDictionaryArray = [[NSArray alloc] initWithContentsOfFile:coffeePath];
+    NSMutableArray *array = [NSMutableArray array];
     
-    return arrayOfCoffee;
+    for (NSDictionary *coffeDictionary in coffeeDictionaryArray)
+    {
+        KVZCoffee *coffeeObject = [[KVZCoffee alloc] initWithTypeName:[coffeDictionary objectForKey:@"typeName"]
+                                                            imageName:[coffeDictionary objectForKey:@"imageName"]];
+        [array addObject:coffeeObject];
+    }
+    
+    NSArray *coffeeArray = [NSArray arrayWithArray:array];
+    return coffeeArray;
 }
 
 @end

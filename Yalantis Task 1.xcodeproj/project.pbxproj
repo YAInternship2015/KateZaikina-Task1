@@ -29,6 +29,7 @@
 		8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */; };
 		8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */; };
 		80922E391B89C97D002BF57C /* KVZContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80922E381B89C97D002BF57C /* KVZContainerViewController.m */; };
+		80922E3B1B89EAEA002BF57C /* coffeeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80922E3A1B89EAEA002BF57C /* coffeeList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZDataSourceFactory.m; sourceTree = "<group>"; };
 		80922E371B89C97D002BF57C /* KVZContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZContainerViewController.h; sourceTree = "<group>"; };
 		80922E381B89C97D002BF57C /* KVZContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZContainerViewController.m; sourceTree = "<group>"; };
+		80922E3A1B89EAEA002BF57C /* coffeeList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = coffeeList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		80014A591B75DCD9004A50FB /* Yalantis Task 1 */ = {
 			isa = PBXGroup;
 			children = (
+				80922E3A1B89EAEA002BF57C /* coffeeList.plist */,
 				8085E40A1B7F85ED00B0C261 /* Models */,
 				8085E40C1B7F85FD00B0C261 /* Views */,
 				8085E40B1B7F85F500B0C261 /* Controllers */,
@@ -310,6 +313,7 @@
 				80014A6B1B75DCD9004A50FB /* LaunchScreen.xib in Resources */,
 				80014A971B760BE3004A50FB /* cappuccino.jpg in Resources */,
 				80014A9A1B760BE3004A50FB /* glace.jpg in Resources */,
+				80922E3B1B89EAEA002BF57C /* coffeeList.plist in Resources */,
 				80014A981B760BE3004A50FB /* espresso.jpg in Resources */,
 				80014A9E1B760BE3004A50FB /* mocha.jpg in Resources */,
 				80014A681B75DCD9004A50FB /* Images.xcassets in Resources */,

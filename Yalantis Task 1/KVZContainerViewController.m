@@ -9,10 +9,10 @@
 #import "KVZContainerViewController.h"
 
 @interface KVZContainerViewController ()
+
 @property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
 @property (weak, nonatomic) IBOutlet UIView *collectionViewContainer;
 - (IBAction)didChangeCoffeeView:(id)sender;
-
 
 @end
 
@@ -25,7 +25,6 @@
 
 - (IBAction)didChangeCoffeeView:(id)sender {
     if ([self.tableViewContainer isEqual:[self.view.subviews lastObject]]) {
-        
         [UIView animateWithDuration:0.3 animations:^{
             self.collectionViewContainer.alpha = 1.f;
             self.tableViewContainer.alpha = 0.f;
