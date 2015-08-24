@@ -14,12 +14,18 @@
 
 @implementation KVZArrayDataSource
 
--(id) init {
+- (id)init {
     self = [super init];
     if (self) {
         self.array = [KVZDataSourceFactory coffeeModelArray];
     }
     return self;
+}
+
+- (void)addModelWithName:(NSString *)name {
+    KVZCoffee *newCoffeeModel = [KVZDataSourceFactory newCoffeeModel:name];
+    [KVZDataSourceFactory saveNewCoffeeModel:newCoffeeModel];
+    self.array = [self.array arrayByAddingObject:newCoffeeModel];
 }
 
 #pragma mark - UITableViewDataSource

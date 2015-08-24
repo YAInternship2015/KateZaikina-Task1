@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnr-68-dAI">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnr-68-dAI" userLabel="tableContainerView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <connections>
-                                    <segue destination="dAT-qe-tM5" kind="embed" id="i3e-iA-p6N"/>
+                                    <segue destination="dAT-qe-tM5" kind="embed" identifier="tableViewControllerSegue" id="i3e-iA-p6N"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j68-XT-a8u">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j68-XT-a8u" userLabel="collectionContainerView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="37U-zq-6DP" kind="embed" id="Esb-sl-hdZ"/>
+                                    <segue destination="37U-zq-6DP" kind="embed" identifier="collectionViewControllerSegue" id="Esb-sl-hdZ"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -48,6 +48,11 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="didChangeCoffeeView:" destination="DjZ-zK-27e" id="cRh-cr-7JG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yEO-OB-KuC">
+                            <connections>
+                                <segue destination="XcN-07-M9Q" kind="show" identifier="addObjectViewControllerSegue" id="C2x-y5-PVS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -119,6 +124,69 @@
                 <customObject id="JR3-2T-TEq" customClass="KVZArrayDataSource"/>
             </objects>
             <point key="canvasLocation" x="1386" y="312"/>
+        </scene>
+        <!--New Object View Controller-->
+        <scene sceneID="zlK-we-fSs">
+            <objects>
+                <viewController id="XcN-07-M9Q" customClass="KVZNewObjectViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jtl-Gg-TXD"/>
+                        <viewControllerLayoutGuide type="bottom" id="cgK-KE-XBC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Amk-4h-3uz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New coffee drink" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wp5-JO-YVj">
+                                <rect key="frame" x="20" y="50" width="130" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Jcd-bA-rcx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Jcd-bA-rcx"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add new coffee drink" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="soL-i4-l8N">
+                                <rect key="frame" x="422" y="46" width="158" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="elP-Tj-wCN">
+                                <rect key="frame" x="179" y="111" width="243" height="36"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="243" id="ZZw-ac-z6d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveNewCoffeeButton:" destination="XcN-07-M9Q" eventType="touchUpInside" id="S3k-Vw-kFH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="elP-Tj-wCN" firstAttribute="centerX" secondItem="Amk-4h-3uz" secondAttribute="centerX" id="2E0-FY-WNu"/>
+                            <constraint firstAttribute="trailing" secondItem="soL-i4-l8N" secondAttribute="trailing" constant="20" id="Acs-o5-Yy8"/>
+                            <constraint firstItem="elP-Tj-wCN" firstAttribute="top" secondItem="Jtl-Gg-TXD" secondAttribute="bottom" constant="111" id="G1f-uv-HhF"/>
+                            <constraint firstItem="wp5-JO-YVj" firstAttribute="leading" secondItem="Amk-4h-3uz" secondAttribute="leading" constant="20" id="P5y-rX-1wL"/>
+                            <constraint firstItem="soL-i4-l8N" firstAttribute="top" secondItem="Jtl-Gg-TXD" secondAttribute="bottom" constant="46" id="qbN-4i-SpV"/>
+                            <constraint firstItem="wp5-JO-YVj" firstAttribute="top" secondItem="Jtl-Gg-TXD" secondAttribute="bottom" constant="50" id="yYx-K5-LAv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addCoffeeField" destination="soL-i4-l8N" id="LTI-jX-GzR"/>
+                        <outlet property="saveButton" destination="elP-Tj-wCN" id="b8Q-o3-Sox"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Jk-5A-zfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="372" y="953"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="RXh-ue-DAc">

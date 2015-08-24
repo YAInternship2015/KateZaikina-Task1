@@ -7,7 +7,7 @@
 //
 
 #import "KVZDataSourceFactory.h"
-#import "KVZCoffee.h"
+
 
 @implementation KVZDataSourceFactory
 
@@ -25,6 +25,19 @@
     
     NSArray *coffeeArray = [NSArray arrayWithArray:array];
     return coffeeArray;
+}
+
++ (KVZCoffee *)newCoffeeModel:(NSString *)string{
+    KVZCoffee *newCoffeeModel = [[KVZCoffee alloc]initWithTypeName:string imageName:@"defaultCoffee.gif"];
+    return newCoffeeModel;
+}
+
++ (void)saveNewCoffeeModel:(KVZCoffee *)coffee{
+    NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
+    NSMutableArray *coffeeDictionaryArray = [[NSMutableArray alloc] initWithContentsOfFile:coffeePath];
+    NSDictionary *newCoffeeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:coffee.typeName, @"typeName", coffee.imageName, @"imageName", nil];
+    [coffeeDictionaryArray addObject:newCoffeeDictionary];
+    [coffeeDictionaryArray writeToFile:coffeePath atomically:YES];
 }
 
 @end

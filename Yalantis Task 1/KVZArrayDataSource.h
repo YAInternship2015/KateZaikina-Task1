@@ -12,5 +12,6 @@
 @interface KVZArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSArray *array;
+- (void)addModelWithName:(NSString *)name;
 
 @end

@@ -30,6 +30,9 @@
 		8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */; };
 		80922E391B89C97D002BF57C /* KVZContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80922E381B89C97D002BF57C /* KVZContainerViewController.m */; };
 		80922E3B1B89EAEA002BF57C /* coffeeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80922E3A1B89EAEA002BF57C /* coffeeList.plist */; };
+		80922E3E1B8A118F002BF57C /* KVZNewObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80922E3D1B8A118F002BF57C /* KVZNewObjectViewController.m */; };
+		80922E411B8A29EA002BF57C /* KVZStringValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80922E401B8A29EA002BF57C /* KVZStringValidator.m */; };
+		80922E431B8B6771002BF57C /* defaultCoffee.gif in Resources */ = {isa = PBXBuildFile; fileRef = 80922E421B8B6771002BF57C /* defaultCoffee.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,11 @@
 		80922E371B89C97D002BF57C /* KVZContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZContainerViewController.h; sourceTree = "<group>"; };
 		80922E381B89C97D002BF57C /* KVZContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZContainerViewController.m; sourceTree = "<group>"; };
 		80922E3A1B89EAEA002BF57C /* coffeeList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = coffeeList.plist; sourceTree = "<group>"; };
+		80922E3C1B8A118F002BF57C /* KVZNewObjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZNewObjectViewController.h; sourceTree = "<group>"; };
+		80922E3D1B8A118F002BF57C /* KVZNewObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZNewObjectViewController.m; sourceTree = "<group>"; };
+		80922E3F1B8A29EA002BF57C /* KVZStringValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZStringValidator.h; sourceTree = "<group>"; };
+		80922E401B8A29EA002BF57C /* KVZStringValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZStringValidator.m; sourceTree = "<group>"; };
+		80922E421B8B6771002BF57C /* defaultCoffee.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = defaultCoffee.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				80922E3A1B89EAEA002BF57C /* coffeeList.plist */,
+				80922E3F1B8A29EA002BF57C /* KVZStringValidator.h */,
+				80922E401B8A29EA002BF57C /* KVZStringValidator.m */,
 				8085E40A1B7F85ED00B0C261 /* Models */,
 				8085E40C1B7F85FD00B0C261 /* Views */,
 				8085E40B1B7F85F500B0C261 /* Controllers */,
@@ -162,6 +172,7 @@
 		80014A801B75DCE6004A50FB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				80922E421B8B6771002BF57C /* defaultCoffee.gif */,
 				80014A8C1B760BE3004A50FB /* americano.jpg */,
 				80014A8D1B760BE3004A50FB /* cappuccino.jpg */,
 				80014A8E1B760BE3004A50FB /* espresso.jpg */,
@@ -194,6 +205,8 @@
 			children = (
 				80922E371B89C97D002BF57C /* KVZContainerViewController.h */,
 				80922E381B89C97D002BF57C /* KVZContainerViewController.m */,
+				80922E3C1B8A118F002BF57C /* KVZNewObjectViewController.h */,
+				80922E3D1B8A118F002BF57C /* KVZNewObjectViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -308,6 +321,7 @@
 				80014A9C1B760BE3004A50FB /* latte.jpg in Resources */,
 				80014A661B75DCD9004A50FB /* Main.storyboard in Resources */,
 				80014A9F1B760BE3004A50FB /* vienne-cappuccino.jpg in Resources */,
+				80922E431B8B6771002BF57C /* defaultCoffee.gif in Resources */,
 				80014A9B1B760BE3004A50FB /* irish-coffee.jpg in Resources */,
 				80014A991B760BE3004A50FB /* frappe.jpg in Resources */,
 				80014A6B1B75DCD9004A50FB /* LaunchScreen.xib in Resources */,
@@ -339,9 +353,11 @@
 				8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */,
 				80014A601B75DCD9004A50FB /* AppDelegate.m in Sources */,
 				8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */,
+				80922E411B8A29EA002BF57C /* KVZStringValidator.m in Sources */,
 				80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */,
 				80014A5D1B75DCD9004A50FB /* main.m in Sources */,
 				80922E391B89C97D002BF57C /* KVZContainerViewController.m in Sources */,
+				80922E3E1B8A118F002BF57C /* KVZNewObjectViewController.m in Sources */,
 				80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */,
 				8002B4161B8651D400539F5A /* KVZCollectionViewCell.m in Sources */,
 			);
