@@ -9,6 +9,7 @@
 #import "KVZContainerViewController.h"
 #import "KVZNewObjectViewController.h"
 #import "KVZArrayDataSource.h"
+#import "KVZDataSourceFactory.h"
 
 @interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate>
 
@@ -47,22 +48,23 @@
 }
 
 #pragma mark - UIStoryboard
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"addObjectViewControllerSegue"]) {
         KVZNewObjectViewController *addObjectViewController = segue.destinationViewController;
         addObjectViewController.delegate = self;
     } else if ([segue.identifier isEqualToString:@"collectionViewControllerSegue"]) {
         self.collectionViewController = segue.destinationViewController;
     } else if ([segue.identifier isEqualToString:@"tableViewControllerSegue"]) {
-        self.tableViewController = segue.destinationViewController;
-        
+        self.tableViewController = segue.destinationViewController;        
     }
 }
 
 #pragma mark - KVZNewObjectViewControllerDelegate
 
--(void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
-title{
+- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
+title {
+    [KVZDataSourceFactory saveNewCoffeeModelWithName:title];
     KVZArrayDataSource *tableViewDataSource = (KVZArrayDataSource *)self.tableViewController.tableView.dataSource;
     [tableViewDataSource addModelWithName:title];
     [self.tableViewController.tableView reloadData];
@@ -71,6 +73,5 @@ title{
     [self.collectionViewController.collectionView reloadData];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 @end

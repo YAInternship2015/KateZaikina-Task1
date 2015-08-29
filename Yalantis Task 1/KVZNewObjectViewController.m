@@ -9,7 +9,6 @@
 #import "KVZNewObjectViewController.h"
 #import "KVZStringValidator.h"
 
-
 @interface KVZNewObjectViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
@@ -23,13 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.addCoffeeField.delegate = self;
-        // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)saveNewCoffeeButton:(UIButton *)sender {
@@ -39,6 +31,8 @@
     NSError *error = nil;
     if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]){
         [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"" message:@"New Coffee Drink is saved!" delegate:self cancelButtonTitle:@"Okey" otherButtonTitles:nil, nil];
+        [alertView show];
     }else {
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops, can't save new coffee drink!" message:@"Name should be more than 3 characters." delegate:self cancelButtonTitle:@"Okey" otherButtonTitles:nil, nil];
         [alertView show];
@@ -50,11 +44,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
-}
-
-- (void)dealloc
-{
-    NSLog(@"KVZNewObjectViewController: dealloc");
 }
 
 

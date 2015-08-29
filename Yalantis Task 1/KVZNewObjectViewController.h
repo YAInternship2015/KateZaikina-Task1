@@ -13,7 +13,7 @@
 
 @protocol KVZNewObjectViewControllerDelegate <NSObject>
 
--(void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
+- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
 title;
 
 @end

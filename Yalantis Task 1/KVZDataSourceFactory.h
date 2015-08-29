@@ -13,7 +13,7 @@
 @interface KVZDataSourceFactory : NSObject
 
 + (NSArray *)coffeeModelArray;
-+ (KVZCoffee *)newCoffeeModel:(NSString *)string;
-+ (void)saveNewCoffeeModel:(KVZCoffee *)coffee;
++ (KVZCoffee *)newCoffeeModelWithName:(NSString *)string;
++ (void)saveNewCoffeeModelWithName:(NSString *)coffee;
 
 @end

@@ -23,8 +23,7 @@
 }
 
 - (void)addModelWithName:(NSString *)name {
-    KVZCoffee *newCoffeeModel = [KVZDataSourceFactory newCoffeeModel:name];
-    [KVZDataSourceFactory saveNewCoffeeModel:newCoffeeModel];
+    KVZCoffee *newCoffeeModel = [KVZDataSourceFactory newCoffeeModelWithName:name];
     self.array = [self.array arrayByAddingObject:newCoffeeModel];
 }
 

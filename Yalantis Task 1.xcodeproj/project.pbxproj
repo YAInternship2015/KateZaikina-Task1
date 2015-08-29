@@ -126,9 +126,6 @@
 		80014A591B75DCD9004A50FB /* Yalantis Task 1 */ = {
 			isa = PBXGroup;
 			children = (
-				80922E3A1B89EAEA002BF57C /* coffeeList.plist */,
-				80922E3F1B8A29EA002BF57C /* KVZStringValidator.h */,
-				80922E401B8A29EA002BF57C /* KVZStringValidator.m */,
 				8085E40A1B7F85ED00B0C261 /* Models */,
 				8085E40C1B7F85FD00B0C261 /* Views */,
 				8085E40B1B7F85F500B0C261 /* Controllers */,
@@ -233,6 +230,9 @@
 		8085E40E1B7F861A00B0C261 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				80922E3F1B8A29EA002BF57C /* KVZStringValidator.h */,
+				80922E401B8A29EA002BF57C /* KVZStringValidator.m */,
+				80922E3A1B89EAEA002BF57C /* coffeeList.plist */,
 				80014A801B75DCE6004A50FB /* images */,
 			);
 			name = Resources;

@@ -8,12 +8,16 @@
 
 #import "KVZDataSourceFactory.h"
 
+#define DOCUMENTS [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 
 @implementation KVZDataSourceFactory
 
-+(NSArray *)coffeeModelArray {
++ (NSArray *)coffeeModelArray {
     NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
-    NSArray *coffeeDictionaryArray = [[NSArray alloc] initWithContentsOfFile:coffeePath];
+    NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
+   [[NSFileManager defaultManager] copyItemAtPath:coffeePath toPath:coffeeDocumentsPath error:nil];
+    
+    NSArray *coffeeDictionaryArray = [[NSArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
     NSMutableArray *array = [NSMutableArray array];
     
     for (NSDictionary *coffeDictionary in coffeeDictionaryArray)
@@ -27,17 +31,20 @@
     return coffeeArray;
 }
 
-+ (KVZCoffee *)newCoffeeModel:(NSString *)string{
-    KVZCoffee *newCoffeeModel = [[KVZCoffee alloc]initWithTypeName:string imageName:@"defaultCoffee.gif"];
++ (KVZCoffee *)newCoffeeModelWithName:(NSString *)name {
+    KVZCoffee *newCoffeeModel = [[KVZCoffee alloc]initWithTypeName:name imageName:@"defaultCoffee.gif"];
     return newCoffeeModel;
 }
 
-+ (void)saveNewCoffeeModel:(KVZCoffee *)coffee{
-    NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
-    NSMutableArray *coffeeDictionaryArray = [[NSMutableArray alloc] initWithContentsOfFile:coffeePath];
++ (void)saveNewCoffeeModelWithName:(NSString *)name {
+    KVZCoffee *coffee = [self newCoffeeModelWithName:name];
+    
+    NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
+    NSMutableArray *coffeeDictionaryArray = [[NSMutableArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
     NSDictionary *newCoffeeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:coffee.typeName, @"typeName", coffee.imageName, @"imageName", nil];
+    
     [coffeeDictionaryArray addObject:newCoffeeDictionary];
-    [coffeeDictionaryArray writeToFile:coffeePath atomically:YES];
+    [coffeeDictionaryArray writeToFile:coffeeDocumentsPath atomically:YES];
 }
 
 @end
