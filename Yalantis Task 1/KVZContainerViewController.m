@@ -65,11 +65,7 @@
 - (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
 title {
     [KVZDataSourceFactory saveNewCoffeeModelWithName:title];
-    KVZArrayDataSource *tableViewDataSource = (KVZArrayDataSource *)self.tableViewController.tableView.dataSource;
-    [tableViewDataSource addModelWithName:title];
     [self.tableViewController.tableView reloadData];
-    KVZArrayDataSource *collectionViewDataSource = (KVZArrayDataSource *)self.collectionViewController.collectionView.dataSource;
-    [collectionViewDataSource addModelWithName:title];
     [self.collectionViewController.collectionView reloadData];
     [self.navigationController popViewControllerAnimated:YES];
 }

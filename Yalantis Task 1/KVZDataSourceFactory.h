@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 #import "KVZCoffee.h"
 
+extern NSString* const KVZDataFileContentDidChangeNotification;
+extern NSString* const KVZDataFileContentDidChangeUserInfoKey;
+
 @interface KVZDataSourceFactory : NSObject
 
 + (NSArray *)coffeeModelArray;

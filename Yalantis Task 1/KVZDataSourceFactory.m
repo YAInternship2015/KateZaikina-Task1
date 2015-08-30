@@ -8,6 +8,9 @@
 
 #import "KVZDataSourceFactory.h"
 
+NSString* const KVZDataFileContentDidChangeNotification = @"KVZDataFileContentDidChangeNotification";
+NSString* const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDidChangeUserInfoKey";
+
 #define DOCUMENTS [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 
 @implementation KVZDataSourceFactory
@@ -45,6 +48,12 @@
     
     [coffeeDictionaryArray addObject:newCoffeeDictionary];
     [coffeeDictionaryArray writeToFile:coffeeDocumentsPath atomically:YES];
+    
+    NSDictionary *cofffeeNameDictionary = [NSDictionary dictionaryWithObject:coffee.typeName
+                                                                      forKey:KVZDataFileContentDidChangeUserInfoKey];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KVZDataFileContentDidChangeNotification
+                                                        object:nil
+                                                      userInfo:cofffeeNameDictionary];
 }
 
 @end
