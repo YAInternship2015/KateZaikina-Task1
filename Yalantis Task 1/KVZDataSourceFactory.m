@@ -7,24 +7,53 @@
 //
 
 #import "KVZDataSourceFactory.h"
-#import "KVZCoffee.h"
+
+NSString* const KVZDataFileContentDidChangeNotification = @"KVZDataFileContentDidChangeNotification";
+NSString* const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDidChangeUserInfoKey";
+
+#define DOCUMENTS [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 
 @implementation KVZDataSourceFactory
 
-+(NSArray *)coffeeModelArray {
-    KVZCoffee *espresso = [[KVZCoffee alloc] initWithTypeName:@"espresso" imageName:@"espresso.jpg"];
-    KVZCoffee *americano = [[KVZCoffee alloc] initWithTypeName:@"americano" imageName:@"americano.jpg"];
-    KVZCoffee *cappuccino = [[KVZCoffee alloc] initWithTypeName:@"cappuccino" imageName:@"cappuccino.jpg"];
-    KVZCoffee *latte = [[KVZCoffee alloc] initWithTypeName:@"latte" imageName:@"latte.jpg"];
-    KVZCoffee *lattemacchiato = [[KVZCoffee alloc] initWithTypeName:@"latte-macchiato" imageName:@"latte-macchiato.jpg"];
-    KVZCoffee *mocha = [[KVZCoffee alloc] initWithTypeName:@"mocha" imageName:@"mocha.jpg"];
-    KVZCoffee *glace = [[KVZCoffee alloc] initWithTypeName:@"glace" imageName:@"glace.jpg"];
-    KVZCoffee *irishcoffee = [[KVZCoffee alloc] initWithTypeName:@"irish-coffee" imageName:@"irish-coffee.jpg"];
-    KVZCoffee *frappe = [[KVZCoffee alloc] initWithTypeName:@"frappe" imageName:@"frappe.jpg"];
-    KVZCoffee *viennecoffee = [[KVZCoffee alloc] initWithTypeName:@"vienne-coffee" imageName:@"vienne-cappuccino.jpg"];
-    NSArray *arrayOfCoffee = [NSArray arrayWithObjects:espresso, americano, cappuccino, latte, lattemacchiato, mocha, glace, irishcoffee, frappe, viennecoffee, nil];
++ (NSArray *)coffeeModelArray {
+    NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
+    NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
+   [[NSFileManager defaultManager] copyItemAtPath:coffeePath toPath:coffeeDocumentsPath error:nil];
     
-    return arrayOfCoffee;
+    NSArray *coffeeDictionaryArray = [[NSArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSDictionary *coffeDictionary in coffeeDictionaryArray)
+    {
+        KVZCoffee *coffeeObject = [[KVZCoffee alloc] initWithTypeName:[coffeDictionary objectForKey:@"typeName"]
+                                                            imageName:[coffeDictionary objectForKey:@"imageName"]];
+        [array addObject:coffeeObject];
+    }
+    
+    NSArray *coffeeArray = [NSArray arrayWithArray:array];
+    return coffeeArray;
+}
+
++ (KVZCoffee *)newCoffeeModelWithName:(NSString *)name {
+    KVZCoffee *newCoffeeModel = [[KVZCoffee alloc]initWithTypeName:name imageName:@"defaultCoffee.gif"];
+    return newCoffeeModel;
+}
+
++ (void)saveNewCoffeeModelWithName:(NSString *)name {
+    KVZCoffee *coffee = [self newCoffeeModelWithName:name];
+    
+    NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
+    NSMutableArray *coffeeDictionaryArray = [[NSMutableArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
+    NSDictionary *newCoffeeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:coffee.typeName, @"typeName", coffee.imageName, @"imageName", nil];
+    
+    [coffeeDictionaryArray addObject:newCoffeeDictionary];
+    [coffeeDictionaryArray writeToFile:coffeeDocumentsPath atomically:YES];
+    
+    NSDictionary *cofffeeNameDictionary = [NSDictionary dictionaryWithObject:coffee
+                                                                      forKey:KVZDataFileContentDidChangeUserInfoKey];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KVZDataFileContentDidChangeNotification
+                                                        object:nil
+                                                      userInfo:cofffeeNameDictionary];
 }
 
 @end
