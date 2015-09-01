@@ -49,7 +49,7 @@ NSString* const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDid
     [coffeeDictionaryArray addObject:newCoffeeDictionary];
     [coffeeDictionaryArray writeToFile:coffeeDocumentsPath atomically:YES];
     
-    NSDictionary *cofffeeNameDictionary = [NSDictionary dictionaryWithObject:coffee.typeName
+    NSDictionary *cofffeeNameDictionary = [NSDictionary dictionaryWithObject:coffee
                                                                       forKey:KVZDataFileContentDidChangeUserInfoKey];
     [[NSNotificationCenter defaultCenter] postNotificationName:KVZDataFileContentDidChangeNotification
                                                         object:nil

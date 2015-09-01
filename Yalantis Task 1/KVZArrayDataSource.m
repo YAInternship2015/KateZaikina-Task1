@@ -12,6 +12,12 @@
 #import "KVZDataSourceFactory.h"
 #import "KVZCollectionViewCell.h"
 
+@interface KVZArrayDataSource ()
+
+- (void)addModelNotification:(NSNotification *)notification;
+
+@end
+
 
 @implementation KVZArrayDataSource
 
@@ -29,9 +35,12 @@
 }
 
 - (void)addModelNotification:(NSNotification *)notification {
-    NSString *name = [notification.userInfo objectForKey:KVZDataFileContentDidChangeUserInfoKey];
-    KVZCoffee *newCoffeeModel = [KVZDataSourceFactory newCoffeeModelWithName:name];
-    self.array = [self.array arrayByAddingObject:newCoffeeModel];
+    KVZCoffee *coffee = [notification.userInfo objectForKey:KVZDataFileContentDidChangeUserInfoKey];
+    self.array = [self.array arrayByAddingObject:coffee];
+    if ([self.delegate respondsToSelector:@selector(arrayDataSourceDidChange:)])
+    {
+        [self.delegate arrayDataSourceDidChange:self];
+    }
 }
 
 - (void)dealloc

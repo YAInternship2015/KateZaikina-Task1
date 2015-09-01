@@ -11,7 +11,7 @@
 #import "KVZArrayDataSource.h"
 #import "KVZDataSourceFactory.h"
 
-@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate>
+@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZArrayDataSourceDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
 @property (weak, nonatomic) IBOutlet UIView *collectionViewContainer;
@@ -55,8 +55,13 @@
         addObjectViewController.delegate = self;
     } else if ([segue.identifier isEqualToString:@"collectionViewControllerSegue"]) {
         self.collectionViewController = segue.destinationViewController;
+        KVZArrayDataSource *arrayDataSource = (id)self.collectionViewController.collectionView.dataSource;
+        arrayDataSource.delegate = self;
     } else if ([segue.identifier isEqualToString:@"tableViewControllerSegue"]) {
-        self.tableViewController = segue.destinationViewController;        
+        self.tableViewController = segue.destinationViewController;
+        KVZArrayDataSource *arrayDataSource = (id)self.tableViewController.tableView.dataSource;
+        arrayDataSource.delegate = self;
+
     }
 }
 
@@ -65,9 +70,21 @@
 - (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
 title {
     [KVZDataSourceFactory saveNewCoffeeModelWithName:title];
-    [self.tableViewController.tableView reloadData];
-    [self.collectionViewController.collectionView reloadData];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - KVZArrayDataSourceDelegate
+
+- (void)arrayDataSourceDidChange:(KVZArrayDataSource *)arrayDataSource
+{
+    if ([arrayDataSource isEqual:self.collectionViewController.collectionView.dataSource])
+    {
+        [self.collectionViewController.collectionView reloadData];
+    }
+    else if ([arrayDataSource isEqual:self.tableViewController.tableView.dataSource])
+    {
+        [self.tableViewController.tableView reloadData];
+    }
 }
 
 @end

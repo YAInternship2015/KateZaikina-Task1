@@ -9,10 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class KVZArrayDataSource;
+
+@protocol KVZArrayDataSourceDelegate <NSObject>
+
+- (void)arrayDataSourceDidChange:(KVZArrayDataSource *)arrayDataSource;
+
+@end
+
 @interface KVZArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSArray *array;
-
-- (void)addModelNotification:(NSNotification *)notification;
+@property (nonatomic, weak) id <KVZArrayDataSourceDelegate> delegate;
 
 @end
