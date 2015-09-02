@@ -16,6 +16,7 @@ NSString* const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDid
 @implementation KVZDataSourceFactory
 
 + (NSArray *)coffeeModelArray {
+#warning <#message#>
     NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
     NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
    [[NSFileManager defaultManager] copyItemAtPath:coffeePath toPath:coffeeDocumentsPath error:nil];
@@ -23,7 +24,9 @@ NSString* const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDid
     NSArray *coffeeDictionaryArray = [[NSArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
     NSMutableArray *array = [NSMutableArray array];
     
+#warning опечатка в coffeDictionary
     for (NSDictionary *coffeDictionary in coffeeDictionaryArray)
+#warning открывающуюся скобку надо оставлять на той же строке, что и for
     {
         KVZCoffee *coffeeObject = [[KVZCoffee alloc] initWithTypeName:[coffeDictionary objectForKey:@"typeName"]
                                                             imageName:[coffeDictionary objectForKey:@"imageName"]];
@@ -34,6 +37,7 @@ NSString* const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDid
     return coffeeArray;
 }
 
+#warning лучше просто coffeeModelWithName:
 + (KVZCoffee *)newCoffeeModelWithName:(NSString *)name {
     KVZCoffee *newCoffeeModel = [[KVZCoffee alloc]initWithTypeName:name imageName:@"defaultCoffee.gif"];
     return newCoffeeModel;
@@ -44,11 +48,13 @@ NSString* const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDid
     
     NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
     NSMutableArray *coffeeDictionaryArray = [[NSMutableArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
+#warning это лучше вынести в категорию KVZCoffee в метод dictionaryRepresentation
     NSDictionary *newCoffeeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:coffee.typeName, @"typeName", coffee.imageName, @"imageName", nil];
     
     [coffeeDictionaryArray addObject:newCoffeeDictionary];
     [coffeeDictionaryArray writeToFile:coffeeDocumentsPath atomically:YES];
     
+#warning опечатка в cofffeeNameDictionary, хотя если эта логика переедет в датасорс, то передавать объект в нотификейшне не нужно будет
     NSDictionary *cofffeeNameDictionary = [NSDictionary dictionaryWithObject:coffee
                                                                       forKey:KVZDataFileContentDidChangeUserInfoKey];
     [[NSNotificationCenter defaultCenter] postNotificationName:KVZDataFileContentDidChangeNotification

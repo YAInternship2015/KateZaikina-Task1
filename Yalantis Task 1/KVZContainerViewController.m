@@ -30,6 +30,8 @@
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
+#warning это конечно не nested view contollers, как я писал в требованиях. Недостаток Вашего решения состоит в том, что контроллеры таблицы и коллекшн вью не получают коллбеки типа viewWillAppear, viewDidAppear и т.д, они всегда считают, что видимы на экране. Из-за этого могут быть проблемы с UI в более сложных проектах. Nested контроллеры получают эти коллбека от своего parent контроллера и отрабатывают так, будто никакие они и не вложенные. Если у Вас есть время, переделайте на Nested схему
+    
     if ([self.tableViewContainer isEqual:[self.view.subviews lastObject]]) {
         [UIView animateWithDuration:0.2 animations:^{
             self.collectionViewContainer.alpha = 1.f;
@@ -74,7 +76,7 @@ title {
 }
 
 #pragma mark - KVZArrayDataSourceDelegate
-
+#warning оставляйте открывающуюся фигурную скобку на той же строке, что и имя метода. Это касается также и циклов, if'ов, блоков и т.д
 - (void)arrayDataSourceDidChange:(KVZArrayDataSource *)arrayDataSource
 {
     if ([arrayDataSource isEqual:self.collectionViewController.collectionView.dataSource])

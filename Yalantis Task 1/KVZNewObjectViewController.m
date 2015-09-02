@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UITextField *addCoffeeField;
+#warning  методы можно не выносить в @interface секцию
 - (IBAction)saveNewCoffeeButton:(UIButton *)sender;
 
 @end
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+#warning делегат лучше установить в сториборде
     self.addCoffeeField.delegate = self;
 }
 
@@ -31,6 +33,7 @@
     NSError *error = nil;
     if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]){
         [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
+#warning Все тексты, которые появляются в коде и которые увидит юзер в UI, нужно вынести в файл Localizable.strings. Почитайте, что это такое, в гугл
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"" message:@"New Coffee Drink is saved!" delegate:self cancelButtonTitle:@"Okey" otherButtonTitles:nil, nil];
         [alertView show];
     }else {

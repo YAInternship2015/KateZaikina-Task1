@@ -14,6 +14,7 @@
 
 @interface KVZArrayDataSource ()
 
+@property (nonatomic, weak) id <KVZArrayDataSourceDelegate> delegate;
 - (void)addModelNotification:(NSNotification *)notification;
 
 @end
