@@ -10,15 +10,15 @@
 #import "KVZNewObjectViewController.h"
 #import "KVZArrayDataSource.h"
 #import "KVZDataSourceFactory.h"
+#import "KVZCollectionViewDataSource.h"
+#import "KVZTableViewDataSource.h"
 
-@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZArrayDataSourceDelegate>
+@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZTableViewDataSourceDelegate, KVZCollectionViewDataSourceDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
 @property (weak, nonatomic) IBOutlet UIView *collectionViewContainer;
 @property (strong, nonatomic) UITableViewController *tableViewController;
 @property (strong, nonatomic) UICollectionViewController *collectionViewController;
-
-- (IBAction)didChangeCoffeeView:(id)sender;
 
 @end
 
@@ -57,12 +57,12 @@
         addObjectViewController.delegate = self;
     } else if ([segue.identifier isEqualToString:@"collectionViewControllerSegue"]) {
         self.collectionViewController = segue.destinationViewController;
-        KVZArrayDataSource *arrayDataSource = (id)self.collectionViewController.collectionView.dataSource;
-        arrayDataSource.delegate = self;
+         KVZCollectionViewDataSource *collectionDataSource = self.collectionViewController.collectionView.dataSource;
+        collectionDataSource.delegate = self;
     } else if ([segue.identifier isEqualToString:@"tableViewControllerSegue"]) {
         self.tableViewController = segue.destinationViewController;
-        KVZArrayDataSource *arrayDataSource = (id)self.tableViewController.tableView.dataSource;
-        arrayDataSource.delegate = self;
+        KVZTableViewDataSource *tableDataSource = self.tableViewController.tableView.dataSource;
+        tableDataSource.delegate = self;
 
     }
 }
@@ -71,22 +71,21 @@
 
 - (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
 title {
-    [KVZDataSourceFactory saveNewCoffeeModelWithName:title];
+    [[[KVZArrayDataSource alloc]init] saveNewCoffeeModelWithName:title];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - KVZArrayDataSourceDelegate
-#warning оставляйте открывающуюся фигурную скобку на той же строке, что и имя метода. Это касается также и циклов, if'ов, блоков и т.д
-- (void)arrayDataSourceDidChange:(KVZArrayDataSource *)arrayDataSource
-{
-    if ([arrayDataSource isEqual:self.collectionViewController.collectionView.dataSource])
-    {
-        [self.collectionViewController.collectionView reloadData];
-    }
-    else if ([arrayDataSource isEqual:self.tableViewController.tableView.dataSource])
-    {
-        [self.tableViewController.tableView reloadData];
-    }
+#pragma mark - KVZTableViewDataSourceDelegate
+
+- (void)tableDataSourceDidChange:(KVZTableViewDataSource *)tableDataSource{
+    [self.tableViewController.tableView reloadData];
 }
+
+#pragma mark - KVZCollectionViewDataSourceDelegate
+
+- (void)collectionDataSourceDidChange:(KVZArrayDataSource *)collectionDataSource{
+    [self.collectionViewController.collectionView reloadData];
+}
+
 
 @end

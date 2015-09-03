@@ -20,8 +20,6 @@ title;
 
 @interface KVZNewObjectViewController : UIViewController <UITextFieldDelegate>
 
-#warning а нужно ли все это в *.h файле?
-@property (nonatomic, strong) KVZCoffee *coffeeModel;
 @property (nonatomic, weak) id<KVZNewObjectViewControllerDelegate> delegate;
 
 @end

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yalantis Task 1/KVZNewObjectViewController.m"
-            timestampString = "462575118.407693"
+            timestampString = "463002356.600165"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "-saveNewCoffeeButton:"
             landmarkType = "5">
          </BreakpointContent>

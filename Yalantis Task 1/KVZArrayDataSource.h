@@ -9,20 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class KVZArrayDataSource;
+@interface KVZArrayDataSource : NSObject
 
-@protocol KVZArrayDataSourceDelegate <NSObject>
-
-- (void)arrayDataSourceDidChange:(KVZArrayDataSource *)arrayDataSource;
-
-@end
-
-#warning тут получается., что у этого объекта аж три ответственности - он и данные хранит, и UITableViewDataSource, и UICollectionViewDataSource. Лучше разделить его на три отдельных объекта, либо убрать UITableViewDataSource и UICollectionViewDataSource в контроллеры (хотя лучше все-таки три объекта)
-
-@interface KVZArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
-
-#warning зачем показывать массив в *.h? К нему вроде никто не обращается извне
 @property (nonatomic, strong) NSArray *array;
-@property (nonatomic, weak) id <KVZArrayDataSourceDelegate> delegate;
+- (void)saveNewCoffeeModelWithName:(NSString *)name;
 
 @end

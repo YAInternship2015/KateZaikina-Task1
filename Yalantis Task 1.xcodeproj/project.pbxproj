@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80009B081B98C941003C8F86 /* KVZTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 80009B071B98C941003C8F86 /* KVZTableViewDataSource.m */; };
+		80009B0B1B98C95B003C8F86 /* KVZCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 80009B0A1B98C95B003C8F86 /* KVZCollectionViewDataSource.m */; };
 		80014A5D1B75DCD9004A50FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A5C1B75DCD9004A50FB /* main.m */; };
 		80014A601B75DCD9004A50FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A5F1B75DCD9004A50FB /* AppDelegate.m */; };
 		80014A661B75DCD9004A50FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80014A641B75DCD9004A50FB /* Main.storyboard */; };
@@ -46,6 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80009B051B98BDC5003C8F86 /* KVZConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVZConstants.h; sourceTree = "<group>"; };
+		80009B061B98C941003C8F86 /* KVZTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZTableViewDataSource.h; sourceTree = "<group>"; };
+		80009B071B98C941003C8F86 /* KVZTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZTableViewDataSource.m; sourceTree = "<group>"; };
+		80009B091B98C95B003C8F86 /* KVZCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZCollectionViewDataSource.h; sourceTree = "<group>"; };
+		80009B0A1B98C95B003C8F86 /* KVZCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZCollectionViewDataSource.m; sourceTree = "<group>"; };
 		80014A571B75DCD9004A50FB /* Yalantis Task 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yalantis Task 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80014A5B1B75DCD9004A50FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80014A5C1B75DCD9004A50FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -187,12 +194,17 @@
 		8085E40A1B7F85ED00B0C261 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				80009B051B98BDC5003C8F86 /* KVZConstants.h */,
 				80014A891B75E160004A50FB /* KVZCoffee.h */,
 				80014A8A1B75E160004A50FB /* KVZCoffee.m */,
 				8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */,
 				8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */,
 				8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */,
 				8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */,
+				80009B061B98C941003C8F86 /* KVZTableViewDataSource.h */,
+				80009B071B98C941003C8F86 /* KVZTableViewDataSource.m */,
+				80009B091B98C95B003C8F86 /* KVZCollectionViewDataSource.h */,
+				80009B0A1B98C95B003C8F86 /* KVZCollectionViewDataSource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -351,12 +363,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */,
+				80009B0B1B98C95B003C8F86 /* KVZCollectionViewDataSource.m in Sources */,
 				80014A601B75DCD9004A50FB /* AppDelegate.m in Sources */,
 				8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */,
 				80922E411B8A29EA002BF57C /* KVZStringValidator.m in Sources */,
 				80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */,
 				80014A5D1B75DCD9004A50FB /* main.m in Sources */,
 				80922E391B89C97D002BF57C /* KVZContainerViewController.m in Sources */,
+				80009B081B98C941003C8F86 /* KVZTableViewDataSource.m in Sources */,
 				80922E3E1B8A118F002BF57C /* KVZNewObjectViewController.m in Sources */,
 				80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */,
 				8002B4161B8651D400539F5A /* KVZCollectionViewCell.m in Sources */,

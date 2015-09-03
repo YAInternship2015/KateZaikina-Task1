@@ -8,17 +8,11 @@
 
 #import "KVZArrayDataSource.h"
 #import "KVZTableViewCell.h"
-#import "KVZCoffee.h"
 #import "KVZDataSourceFactory.h"
 #import "KVZCollectionViewCell.h"
+#import "KVZConstants.h"
 
-@interface KVZArrayDataSource ()
-
-@property (nonatomic, weak) id <KVZArrayDataSourceDelegate> delegate;
-- (void)addModelNotification:(NSNotification *)notification;
-
-@end
-
+#define DOCUMENTS [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 
 @implementation KVZArrayDataSource
 
@@ -26,65 +20,37 @@
     self = [super init];
     if (self) {
         self.array = [KVZDataSourceFactory coffeeModelArray];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(addModelNotification:)
-                                                     name:KVZDataFileContentDidChangeNotification
-                                                   object:nil];
 
     }
     return self;
 }
 
-- (void)addModelNotification:(NSNotification *)notification {
-    KVZCoffee *coffee = [notification.userInfo objectForKey:KVZDataFileContentDidChangeUserInfoKey];
+- (void)addNewModel:(KVZCoffee *)coffee {
     self.array = [self.array arrayByAddingObject:coffee];
-    if ([self.delegate respondsToSelector:@selector(arrayDataSourceDidChange:)])
-    {
-        [self.delegate arrayDataSourceDidChange:self];
-    }
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.array count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"coffeeCell";
-    KVZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    KVZCoffee *coffee = [self.array objectAtIndex:indexPath.row];
-    [cell setUpWithCoffee:coffee];
+}
+
+
+- (KVZCoffee *)coffeeModelWithName:(NSString *)name {
+    KVZCoffee *newCoffeeModel = [[KVZCoffee alloc]initWithTypeName:name imageName:@"defaultCoffee.gif"];
+    return newCoffeeModel;
+}
+
+- (void)saveNewCoffeeModelWithName:(NSString *)name {
+    KVZCoffee *coffee = [self coffeeModelWithName:name];
     
-    return cell;
-}
-
-#pragma mark - UICollectionViewDataSource
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.array count];
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"collectionCoffeeCell";
-    KVZCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
+    NSMutableArray *coffeeDictionaryArray = [[NSMutableArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
+    NSDictionary *newCoffeeDictionary = [coffee dictionaryRepresentation];
+    [coffeeDictionaryArray addObject:newCoffeeDictionary];
+    [coffeeDictionaryArray writeToFile:coffeeDocumentsPath atomically:YES];
     
-    KVZCoffee *coffee = [self.array objectAtIndex:indexPath.item];
-    [cell setUpWithCoffeeImage:coffee];
-        
-    return cell;
+#warning опечатка в cofffeeNameDictionary, хотя если эта логика переедет в датасорс, то передавать объект в нотификейшне не нужно будет
+    [self addNewModel:coffee];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:KVZDataFileContentDidChangeNotificationName
+                                                        object:nil
+                                                      userInfo:nil];
 }
-
 
 @end

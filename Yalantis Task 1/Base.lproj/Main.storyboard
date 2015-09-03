@@ -121,7 +121,7 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KpP-k7-eCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="JR3-2T-TEq" customClass="KVZArrayDataSource"/>
+                <customObject id="JR3-2T-TEq" customClass="KVZTableViewDataSource"/>
             </objects>
             <point key="canvasLocation" x="1386" y="312"/>
         </scene>
@@ -143,7 +143,7 @@
                                     <constraint firstAttribute="width" constant="150" id="Jcd-bA-rcx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -155,6 +155,9 @@
                                 <rect key="frame" x="422" y="46" width="158" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XcN-07-M9Q" id="zl4-XJ-veY"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="elP-Tj-wCN">
                                 <rect key="frame" x="179" y="111" width="243" height="36"/>
@@ -233,7 +236,7 @@
                     </collectionView>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNB-3U-drD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="yVS-AO-at1" customClass="KVZArrayDataSource"/>
+                <customObject id="yVS-AO-at1" customClass="KVZCollectionViewDataSource"/>
             </objects>
             <point key="canvasLocation" x="1029" y="955"/>
         </scene>

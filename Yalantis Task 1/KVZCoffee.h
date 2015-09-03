@@ -14,5 +14,6 @@
 @property (nonatomic, strong, readonly) NSString *imageName;
 
 - (id)initWithTypeName:(NSString *)typeName imageName:(NSString *)imageName;
+- (NSDictionary *)dictionaryRepresentation;
 
 @end

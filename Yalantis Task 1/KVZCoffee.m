@@ -19,4 +19,10 @@
     return self;
 }
 
+- (NSDictionary *)dictionaryRepresentation{
+    NSDictionary *newCoffeeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:self.typeName, @"typeName",
+                                                                                   self.imageName, @"imageName", nil];
+    return newCoffeeDictionary;
+}
+
 @end

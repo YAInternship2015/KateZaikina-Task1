@@ -13,8 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UITextField *addCoffeeField;
-#warning  методы можно не выносить в @interface секцию
-- (IBAction)saveNewCoffeeButton:(UIButton *)sender;
+@property (nonatomic, strong) KVZCoffee *coffeeModel;
 
 @end
 
@@ -22,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-#warning делегат лучше установить в сториборде
-    self.addCoffeeField.delegate = self;
 }
 
 - (IBAction)saveNewCoffeeButton:(UIButton *)sender {
