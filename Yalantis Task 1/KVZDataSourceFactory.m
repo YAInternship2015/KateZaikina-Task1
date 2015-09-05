@@ -26,7 +26,6 @@
                                                             imageName:[coffeeDictionary objectForKey:@"imageName"]];
         [array addObject:coffeeObject];
     }
-    
     NSArray *coffeeArray = [NSArray arrayWithArray:array];
     return coffeeArray;
 }

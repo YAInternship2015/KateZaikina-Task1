@@ -19,6 +19,6 @@
 
 @interface KVZTableViewDataSource : NSObject <UITableViewDataSource>
 
-@property (nonatomic, weak) id <KVZTableViewDataSourceDelegate> delegate;
+@property (nonatomic, weak) id<KVZTableViewDataSourceDelegate> delegate;
 
 @end

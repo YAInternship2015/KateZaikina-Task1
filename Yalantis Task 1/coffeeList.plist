@@ -4,61 +4,61 @@
 <array>
 	<dict>
 		<key>typeName</key>
-		<string>espresso</string>
+		<string>Espresso</string>
 		<key>imageName</key>
 		<string>espresso.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>americano</string>
+		<string>Americano</string>
 		<key>imageName</key>
 		<string>americano.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>cappuccino</string>
+		<string>Cappuccino</string>
 		<key>imageName</key>
 		<string>cappuccino.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>latte</string>
+		<string>Latte</string>
 		<key>imageName</key>
 		<string>latte.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>latte-macchiato</string>
+		<string>Latte-Macchiato</string>
 		<key>imageName</key>
 		<string>latte-macchiato.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>mocha</string>
+		<string>Mocca</string>
 		<key>imageName</key>
 		<string>mocha.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>glace</string>
+		<string>Glace</string>
 		<key>imageName</key>
 		<string>glace.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>irish-coffee</string>
+		<string>Irish Coffee</string>
 		<key>imageName</key>
 		<string>irish-coffee.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>frappe</string>
+		<string>Frappe</string>
 		<key>imageName</key>
 		<string>frappe.jpg</string>
 	</dict>
 	<dict>
 		<key>typeName</key>
-		<string>vienne-coffee</string>
+		<string>Vienne Coffee</string>
 		<key>imageName</key>
 		<string>vienne-cappuccino.jpg</string>
 	</dict>

@@ -20,23 +20,20 @@
     self = [super init];
     if (self) {
         self.array = [KVZDataSourceFactory coffeeModelArray];
-
     }
     return self;
 }
 
 - (void)addNewModel:(KVZCoffee *)coffee {
     self.array = [self.array arrayByAddingObject:coffee];
-    
 }
-
 
 - (KVZCoffee *)coffeeModelWithName:(NSString *)name {
     KVZCoffee *newCoffeeModel = [[KVZCoffee alloc]initWithTypeName:name imageName:@"defaultCoffee.gif"];
     return newCoffeeModel;
 }
 
-- (void)saveNewCoffeeModelWithName:(NSString *)name {
+- (void)saveNewModelWithName:(NSString *)name {
     KVZCoffee *coffee = [self coffeeModelWithName:name];
     
     NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
@@ -45,7 +42,6 @@
     [coffeeDictionaryArray addObject:newCoffeeDictionary];
     [coffeeDictionaryArray writeToFile:coffeeDocumentsPath atomically:YES];
     
-#warning опечатка в cofffeeNameDictionary, хотя если эта логика переедет в датасорс, то передавать объект в нотификейшне не нужно будет
     [self addNewModel:coffee];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KVZDataFileContentDidChangeNotificationName

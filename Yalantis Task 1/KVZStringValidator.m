@@ -10,7 +10,7 @@
 
 @implementation KVZStringValidator
 
-- (BOOL)isValidModelTitle:(NSString *)title error:(NSError **)error{
+- (BOOL)isValidModelTitle:(NSString *)title error:(NSError **)error {
     BOOL success = title.length > 3;
    
     if (!success) {

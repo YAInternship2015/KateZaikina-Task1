@@ -12,6 +12,7 @@
 @interface KVZArrayDataSource : NSObject
 
 @property (nonatomic, strong) NSArray *array;
-- (void)saveNewCoffeeModelWithName:(NSString *)name;
+
+- (void)saveNewModelWithName:(NSString *)name;
 
 @end

@@ -10,6 +10,5 @@
 #define Yalantis_Task_1_KVZConstants_h
 
 static NSString *const KVZDataFileContentDidChangeNotificationName = @"KVZDataFileContentDidChangeNotification";
-static NSString *const KVZDataFileContentDidChangeUserInfoKey = @"KVZDataFileContentDidChangeUserInfoKey";
 
 #endif

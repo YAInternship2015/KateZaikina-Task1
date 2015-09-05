@@ -19,6 +19,6 @@
 
 @interface KVZCollectionViewDataSource : NSObject <UICollectionViewDataSource>
 
-@property (nonatomic, weak) id <KVZCollectionViewDataSourceDelegate> delegate;
+@property (nonatomic, weak) id<KVZCollectionViewDataSourceDelegate> delegate;
 
 @end

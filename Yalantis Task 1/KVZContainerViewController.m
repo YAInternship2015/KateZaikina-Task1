@@ -15,8 +15,6 @@
 
 @interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZTableViewDataSourceDelegate, KVZCollectionViewDataSourceDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
-@property (weak, nonatomic) IBOutlet UIView *collectionViewContainer;
 @property (strong, nonatomic) UITableViewController *tableViewController;
 @property (strong, nonatomic) UICollectionViewController *collectionViewController;
 
@@ -26,66 +24,77 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view bringSubviewToFront:self.tableViewContainer];
+    UITableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
+    self.tableViewController = tableViewController;
+
+    UICollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
+    self.collectionViewController = collectionViewController;
+
+    [self addChildViewController:tableViewController];
+    self.tableViewController.tableView.frame = self.view.frame;
+    [self.view addSubview:tableViewController.tableView];
+    [tableViewController didMoveToParentViewController:self];
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
-#warning это конечно не nested view contollers, как я писал в требованиях. Недостаток Вашего решения состоит в том, что контроллеры таблицы и коллекшн вью не получают коллбеки типа viewWillAppear, viewDidAppear и т.д, они всегда считают, что видимы на экране. Из-за этого могут быть проблемы с UI в более сложных проектах. Nested контроллеры получают эти коллбека от своего parent контроллера и отрабатывают так, будто никакие они и не вложенные. Если у Вас есть время, переделайте на Nested схему
-    
-    if ([self.tableViewContainer isEqual:[self.view.subviews lastObject]]) {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.collectionViewContainer.alpha = 1.f;
-            self.tableViewContainer.alpha = 0.f;
-        } completion:^(BOOL finished) {
-            [self.view bringSubviewToFront:self.collectionViewContainer];
-        }];
-    } else {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.tableViewContainer.alpha = 1.f;
-            self.collectionViewContainer.alpha = 0.f;
-        } completion:^(BOOL finished) {
-            [self.view bringSubviewToFront:self.tableViewContainer];
-        }];
+    if ([self.childViewControllers.lastObject isEqual:self.tableViewController]) {
+        [self cycleFromViewController:self.tableViewController toViewController:self.collectionViewController];
+    }
+    else if ([self.childViewControllers.lastObject isEqual:self.collectionViewController]) {
+        [self cycleFromViewController:self.collectionViewController toViewController:self.tableViewController];
     }
 }
 
 #pragma mark - UIStoryboard
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addObjectViewControllerSegue"]) {
         KVZNewObjectViewController *addObjectViewController = segue.destinationViewController;
         addObjectViewController.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"collectionViewControllerSegue"]) {
-        self.collectionViewController = segue.destinationViewController;
-         KVZCollectionViewDataSource *collectionDataSource = self.collectionViewController.collectionView.dataSource;
+        
+        KVZCollectionViewDataSource *collectionDataSource = self.collectionViewController.collectionView.dataSource;
         collectionDataSource.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"tableViewControllerSegue"]) {
-        self.tableViewController = segue.destinationViewController;
+        
         KVZTableViewDataSource *tableDataSource = self.tableViewController.tableView.dataSource;
         tableDataSource.delegate = self;
-
     }
 }
 
 #pragma mark - KVZNewObjectViewControllerDelegate
 
-- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
-title {
-    [[[KVZArrayDataSource alloc]init] saveNewCoffeeModelWithName:title];
+- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)title {
+    [[[KVZArrayDataSource alloc]init] saveNewModelWithName:title];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - KVZTableViewDataSourceDelegate
 
-- (void)tableDataSourceDidChange:(KVZTableViewDataSource *)tableDataSource{
+- (void)tableDataSourceDidChange:(KVZTableViewDataSource *)tableDataSource {
     [self.tableViewController.tableView reloadData];
 }
 
 #pragma mark - KVZCollectionViewDataSourceDelegate
 
-- (void)collectionDataSourceDidChange:(KVZArrayDataSource *)collectionDataSource{
+- (void)collectionDataSourceDidChange:(KVZArrayDataSource *)collectionDataSource {
     [self.collectionViewController.collectionView reloadData];
 }
 
+#pragma mark - Nested Controller methods
+
+- (void)cycleFromViewController:(UIViewController *)oldController toViewController:(UIViewController *)newController {
+    [oldController willMoveToParentViewController:nil];
+    [self addChildViewController:newController];
+    
+    [self transitionFromViewController: oldController toViewController: newController
+                              duration: 0.2 options:0
+                            animations:^{
+                                newController.view.alpha = 1.f;
+                                oldController.view.alpha = 0.f;
+                            }
+                            completion:^(BOOL finished) {
+                                [oldController removeFromParentViewController];
+                                [newController didMoveToParentViewController:self];
+                            }];
+}
 
 @end

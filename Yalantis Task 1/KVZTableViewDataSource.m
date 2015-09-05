@@ -20,6 +20,8 @@
 - (id)init {
     self = [super init];
     if (self) {
+        KVZArrayDataSource *array = [[KVZArrayDataSource alloc] init];
+        self.arrayDataSource = array;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reloadViewNotification:)
                                                      name:KVZDataFileContentDidChangeNotificationName
@@ -27,11 +29,13 @@
     }
     return self;
 }
-- (void)dealloc{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)reloadViewNotification:(NSNotification *)notification {
+    KVZArrayDataSource *array = [[KVZArrayDataSource alloc] init];
+    self.arrayDataSource = array;
     if ([self.delegate respondsToSelector:@selector(tableDataSourceDidChange:)]){
         [self.delegate tableDataSourceDidChange:self];
     }
@@ -52,6 +56,5 @@
     
     return cell;
 }
-
 
 @end

@@ -28,13 +28,20 @@
     
     KVZStringValidator *validator = [[KVZStringValidator alloc] init];
     NSError *error = nil;
-    if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]){
+    if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]) {
         [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
-#warning Все тексты, которые появляются в коде и которые увидит юзер в UI, нужно вынести в файл Localizable.strings. Почитайте, что это такое, в гугл
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"" message:@"New Coffee Drink is saved!" delegate:self cancelButtonTitle:@"Okey" otherButtonTitles:nil, nil];
+
+        NSString *localizedSucceessTitleString = NSLocalizedString(@"successful-save-alert", nil);
+        NSString *localizedOkeyString = NSLocalizedString(@"okey", nil);
+
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:localizedSucceessTitleString message:nil delegate:self cancelButtonTitle:localizedOkeyString otherButtonTitles:nil, nil];
         [alertView show];
     }else {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops, can't save new coffee drink!" message:@"Name should be more than 3 characters." delegate:self cancelButtonTitle:@"Okey" otherButtonTitles:nil, nil];
+        NSString *localizedFailString = NSLocalizedString(@"fail-save-alert", nil);
+        NSString *localizedSucceessMassageString = NSLocalizedString(@"succes-save-message-alert", nil);
+        NSString *localizedOkeyString = NSLocalizedString(@"okey", nil);
+        
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:localizedFailString message:localizedSucceessMassageString delegate:self cancelButtonTitle:localizedOkeyString otherButtonTitles:nil, nil];
         [alertView show];
     }
 }
