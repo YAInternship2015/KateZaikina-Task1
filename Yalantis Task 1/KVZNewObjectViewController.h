@@ -20,7 +20,6 @@ title;
 
 @interface KVZNewObjectViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) KVZCoffee *coffeeModel;
 @property (nonatomic, weak) id<KVZNewObjectViewControllerDelegate> delegate;
 
 @end

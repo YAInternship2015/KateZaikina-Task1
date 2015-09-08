@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UITextField *addCoffeeField;
-- (IBAction)saveNewCoffeeButton:(UIButton *)sender;
+@property (nonatomic, strong) KVZCoffee *coffeeModel;
 
 @end
 
@@ -21,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.addCoffeeField.delegate = self;
 }
 
 - (IBAction)saveNewCoffeeButton:(UIButton *)sender {
@@ -29,12 +28,25 @@
     
     KVZStringValidator *validator = [[KVZStringValidator alloc] init];
     NSError *error = nil;
-    if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]){
+    if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]) {
         [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"" message:@"New Coffee Drink is saved!" delegate:self cancelButtonTitle:@"Okey" otherButtonTitles:nil, nil];
+
+        NSString *localizedSucceessTitleString = NSLocalizedString(@"New Coffee Drink is saved!", nil);
+        NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
+
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:localizedSucceessTitleString
+                                                           message:nil
+                                                          delegate:self
+                                                 cancelButtonTitle:localizedOkeyString
+                                                 otherButtonTitles:nil, nil];
         [alertView show];
     }else {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops, can't save new coffee drink!" message:@"Name should be more than 3 characters." delegate:self cancelButtonTitle:@"Okey" otherButtonTitles:nil, nil];
+        NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:error.localizedDescription
+                                                           message:error.localizedRecoverySuggestion
+                                                          delegate:self
+                                                 cancelButtonTitle:localizedOkeyString
+                                                 otherButtonTitles:nil, nil];
         [alertView show];
     }
 }

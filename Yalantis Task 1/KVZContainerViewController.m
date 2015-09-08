@@ -10,15 +10,13 @@
 #import "KVZNewObjectViewController.h"
 #import "KVZArrayDataSource.h"
 #import "KVZDataSourceFactory.h"
+#import "KVZCollectionViewDataSource.h"
+#import "KVZTableViewDataSource.h"
 
-@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZArrayDataSourceDelegate>
+@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZTableViewDataSourceDelegate, KVZCollectionViewDataSourceDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
-@property (weak, nonatomic) IBOutlet UIView *collectionViewContainer;
 @property (strong, nonatomic) UITableViewController *tableViewController;
 @property (strong, nonatomic) UICollectionViewController *collectionViewController;
-
-- (IBAction)didChangeCoffeeView:(id)sender;
 
 @end
 
@@ -26,65 +24,85 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view bringSubviewToFront:self.tableViewContainer];
+    
+    UITableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
+    self.tableViewController = tableViewController;
+
+    UICollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
+    self.collectionViewController = collectionViewController;
+
+    [self addChildViewController:tableViewController];
+    self.tableViewController.tableView.frame = self.view.frame;
+    [self.view addSubview:tableViewController.tableView];
+    [tableViewController didMoveToParentViewController:self];
+
+    UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
+    collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
+    [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
-    if ([self.tableViewContainer isEqual:[self.view.subviews lastObject]]) {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.collectionViewContainer.alpha = 1.f;
-            self.tableViewContainer.alpha = 0.f;
-        } completion:^(BOOL finished) {
-            [self.view bringSubviewToFront:self.collectionViewContainer];
-        }];
-    } else {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.tableViewContainer.alpha = 1.f;
-            self.collectionViewContainer.alpha = 0.f;
-        } completion:^(BOOL finished) {
-            [self.view bringSubviewToFront:self.tableViewContainer];
-        }];
+    if ([self.childViewControllers.lastObject isEqual:self.tableViewController]) {
+        [self cycleFromViewController:self.tableViewController toViewController:self.collectionViewController];
+    }
+    else if ([self.childViewControllers.lastObject isEqual:self.collectionViewController]) {
+        [self cycleFromViewController:self.collectionViewController toViewController:self.tableViewController];
     }
 }
 
 #pragma mark - UIStoryboard
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addObjectViewControllerSegue"]) {
         KVZNewObjectViewController *addObjectViewController = segue.destinationViewController;
         addObjectViewController.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"collectionViewControllerSegue"]) {
-        self.collectionViewController = segue.destinationViewController;
-        KVZArrayDataSource *arrayDataSource = (id)self.collectionViewController.collectionView.dataSource;
-        arrayDataSource.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"tableViewControllerSegue"]) {
-        self.tableViewController = segue.destinationViewController;
-        KVZArrayDataSource *arrayDataSource = (id)self.tableViewController.tableView.dataSource;
-        arrayDataSource.delegate = self;
-
+        
+        KVZCollectionViewDataSource *collectionDataSource = self.collectionViewController.collectionView.dataSource;
+        collectionDataSource.delegate = self;
+        
+        KVZTableViewDataSource *tableDataSource = self.tableViewController.tableView.dataSource;
+        tableDataSource.delegate = self;
     }
 }
 
 #pragma mark - KVZNewObjectViewControllerDelegate
 
-- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
-title {
-    [KVZDataSourceFactory saveNewCoffeeModelWithName:title];
+- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)title {
+    [[[KVZArrayDataSource alloc]init] saveNewModelWithName:title];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - KVZArrayDataSourceDelegate
+#pragma mark - KVZTableViewDataSourceDelegate
 
-- (void)arrayDataSourceDidChange:(KVZArrayDataSource *)arrayDataSource
-{
-    if ([arrayDataSource isEqual:self.collectionViewController.collectionView.dataSource])
-    {
-        [self.collectionViewController.collectionView reloadData];
-    }
-    else if ([arrayDataSource isEqual:self.tableViewController.tableView.dataSource])
-    {
-        [self.tableViewController.tableView reloadData];
-    }
+- (void)tableDataSourceDidChange:(KVZTableViewDataSource *)tableDataSource {
+    [self.tableViewController.tableView reloadData];
+}
+
+#pragma mark - KVZCollectionViewDataSourceDelegate
+
+- (void)collectionDataSourceDidChange:(KVZArrayDataSource *)collectionDataSource {
+    [self.collectionViewController.collectionView reloadData];
+}
+
+#pragma mark - Nested Controller methods
+
+- (void)cycleFromViewController:(UIViewController *)oldController toViewController:(UIViewController *)newController {
+    [oldController willMoveToParentViewController:nil];
+    [self addChildViewController:newController];
+    float animationTimeInSeconds = 0.2;
+    
+    [self transitionFromViewController:oldController toViewController:newController
+                              duration:animationTimeInSeconds
+                               options:0
+                            animations:^{
+                                newController.view.alpha = 1.f;
+                                oldController.view.alpha = 0.f;
+                            }
+                            completion:^(BOOL finished) {
+                                [oldController removeFromParentViewController];
+                                [newController didMoveToParentViewController:self];
+                            }];
+    
 }
 
 @end

@@ -9,17 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class KVZArrayDataSource;
-
-@protocol KVZArrayDataSourceDelegate <NSObject>
-
-- (void)arrayDataSourceDidChange:(KVZArrayDataSource *)arrayDataSource;
-
-@end
-
-@interface KVZArrayDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
+@interface KVZArrayDataSource : NSObject
 
 @property (nonatomic, strong) NSArray *array;
-@property (nonatomic, weak) id <KVZArrayDataSourceDelegate> delegate;
+
+- (void)saveNewModelWithName:(NSString *)name;
 
 @end
