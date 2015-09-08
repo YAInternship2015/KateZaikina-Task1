@@ -31,18 +31,22 @@
     if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]) {
         [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
 
-        NSString *localizedSucceessTitleString = NSLocalizedString(@"successful-save-alert", nil);
-        NSString *localizedOkeyString = NSLocalizedString(@"okey", nil);
+        NSString *localizedSucceessTitleString = NSLocalizedString(@"New Coffee Drink is saved!", nil);
+        NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
 
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:localizedSucceessTitleString message:nil delegate:self cancelButtonTitle:localizedOkeyString otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:localizedSucceessTitleString
+                                                           message:nil
+                                                          delegate:self
+                                                 cancelButtonTitle:localizedOkeyString
+                                                 otherButtonTitles:nil, nil];
         [alertView show];
     }else {
-#warning здесь как раз нужно использовать текст ошибки из NSError, который заполняется в валидаторе
-        NSString *localizedFailString = NSLocalizedString(@"fail-save-alert", nil);
-        NSString *localizedSucceessMassageString = NSLocalizedString(@"succes-save-message-alert", nil);
-        NSString *localizedOkeyString = NSLocalizedString(@"okey", nil);
-        
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:localizedFailString message:localizedSucceessMassageString delegate:self cancelButtonTitle:localizedOkeyString otherButtonTitles:nil, nil];
+        NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:error.localizedDescription
+                                                           message:error.localizedRecoverySuggestion
+                                                          delegate:self
+                                                 cancelButtonTitle:localizedOkeyString
+                                                 otherButtonTitles:nil, nil];
         [alertView show];
     }
 }

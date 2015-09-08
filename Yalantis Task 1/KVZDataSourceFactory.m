@@ -7,6 +7,7 @@
 //
 
 #import "KVZDataSourceFactory.h"
+#import "KVZCoffee.h"
 
 #define DOCUMENTS [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 

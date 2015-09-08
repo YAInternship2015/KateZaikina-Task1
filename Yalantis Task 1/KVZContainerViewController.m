@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UITableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
     self.tableViewController = tableViewController;
 
@@ -35,10 +36,9 @@
     [self.view addSubview:tableViewController.tableView];
     [tableViewController didMoveToParentViewController:self];
 
-#warning тупой фикс бага с инсетами
-//    UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
-//    collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
-//    [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
+    UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
+    collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
+    [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
@@ -89,10 +89,11 @@
 - (void)cycleFromViewController:(UIViewController *)oldController toViewController:(UIViewController *)newController {
     [oldController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
+    float animationTimeInSeconds = 0.2;
     
-#warning после : не нужен пробел. Также длительность анимации необходимо объявить константой в данном методе
-    [self transitionFromViewController: oldController toViewController: newController
-                              duration: 0.2 options:0
+    [self transitionFromViewController:oldController toViewController:newController
+                              duration:animationTimeInSeconds
+                               options:0
                             animations:^{
                                 newController.view.alpha = 1.f;
                                 oldController.view.alpha = 0.f;

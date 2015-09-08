@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#warning здесь не нужен этот импорт. Он нужен уже в *.m
-#import "KVZCoffee.h"
 
 @interface KVZDataSourceFactory : NSObject
 
