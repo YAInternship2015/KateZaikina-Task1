@@ -37,6 +37,7 @@
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:localizedSucceessTitleString message:nil delegate:self cancelButtonTitle:localizedOkeyString otherButtonTitles:nil, nil];
         [alertView show];
     }else {
+#warning здесь как раз нужно использовать текст ошибки из NSError, который заполняется в валидаторе
         NSString *localizedFailString = NSLocalizedString(@"fail-save-alert", nil);
         NSString *localizedSucceessMassageString = NSLocalizedString(@"succes-save-message-alert", nil);
         NSString *localizedOkeyString = NSLocalizedString(@"okey", nil);

@@ -85,6 +85,7 @@
     [oldController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
     
+#warning после : не нужен пробел. Также длительность анимации необходимо объявить константой в данном методе
     [self transitionFromViewController: oldController toViewController: newController
                               duration: 0.2 options:0
                             animations:^{
