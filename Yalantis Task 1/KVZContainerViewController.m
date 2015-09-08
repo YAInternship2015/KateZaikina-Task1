@@ -34,6 +34,11 @@
     self.tableViewController.tableView.frame = self.view.frame;
     [self.view addSubview:tableViewController.tableView];
     [tableViewController didMoveToParentViewController:self];
+
+#warning тупой фикс бага с инсетами
+//    UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
+//    collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
+//    [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
@@ -96,6 +101,7 @@
                                 [oldController removeFromParentViewController];
                                 [newController didMoveToParentViewController:self];
                             }];
+    
 }
 
 @end
