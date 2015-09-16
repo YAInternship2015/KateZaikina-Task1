@@ -8,12 +8,11 @@
 
 #import "KVZContainerViewController.h"
 #import "KVZNewObjectViewController.h"
-#import "KVZArrayDataSource.h"
-#import "KVZDataSourceFactory.h"
 #import "KVZCollectionViewDataSource.h"
 #import "KVZTableViewDataSource.h"
+#import "KVZDataManager.h"
 
-@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZTableViewDataSourceDelegate, KVZCollectionViewDataSourceDelegate>
+@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UITableViewController *tableViewController;
 @property (strong, nonatomic) UICollectionViewController *collectionViewController;
@@ -27,10 +26,12 @@
     
     UITableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
     self.tableViewController = tableViewController;
+    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
+    tableDataSource.fetchedResultsController.delegate = self;
 
     UICollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
     self.collectionViewController = collectionViewController;
-
+    
     [self addChildViewController:tableViewController];
     self.tableViewController.tableView.frame = self.view.frame;
     [self.view addSubview:tableViewController.tableView];
@@ -39,6 +40,19 @@
     UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
     collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
     [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
+    
+    UILongPressGestureRecognizer *longPress
+    = [[UILongPressGestureRecognizer alloc]
+       initWithTarget:self action:@selector(handleLongPress:)];
+    CGFloat minimumPressDuration = 0.5;
+    longPress.minimumPressDuration = minimumPressDuration;
+    [self.collectionViewController.collectionView addGestureRecognizer:longPress];
+    
+
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    return [[KVZDataManager sharedManager] managedObjectContext];
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
@@ -56,32 +70,22 @@
     if ([segue.identifier isEqualToString:@"addObjectViewControllerSegue"]) {
         KVZNewObjectViewController *addObjectViewController = segue.destinationViewController;
         addObjectViewController.delegate = self;
-        
-        KVZCollectionViewDataSource *collectionDataSource = self.collectionViewController.collectionView.dataSource;
-        collectionDataSource.delegate = self;
-        
-        KVZTableViewDataSource *tableDataSource = self.tableViewController.tableView.dataSource;
-        tableDataSource.delegate = self;
     }
 }
 
 #pragma mark - KVZNewObjectViewControllerDelegate
 
-- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)title {
-    [[[KVZArrayDataSource alloc]init] saveNewModelWithName:title];
+- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)title{
+    KVZCoffee *newCoffeeObject = [NSEntityDescription insertNewObjectForEntityForName:@"KVZCoffee" inManagedObjectContext:[self managedObjectContext]];
+    newCoffeeObject.typeName = title;
+    newCoffeeObject.imageName = @"defaultCoffee.gif";
+    
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - KVZTableViewDataSourceDelegate
-
-- (void)tableDataSourceDidChange:(KVZTableViewDataSource *)tableDataSource {
-    [self.tableViewController.tableView reloadData];
-}
-
-#pragma mark - KVZCollectionViewDataSourceDelegate
-
-- (void)collectionDataSourceDidChange:(KVZArrayDataSource *)collectionDataSource {
-    [self.collectionViewController.collectionView reloadData];
 }
 
 #pragma mark - Nested Controller methods
@@ -103,6 +107,69 @@
                                 [newController didMoveToParentViewController:self];
                             }];
     
+}
+
+#pragma mark - TableView NSFetchedResultsController
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableViewController.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    UITableView *tableView = self.tableViewController.tableView;
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableViewController.tableView endUpdates];
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    CGPoint location = [gestureRecognizer locationInView:self.collectionViewController.collectionView];
+    NSIndexPath *indexPath = [self.collectionViewController.collectionView indexPathForItemAtPoint:location];
+    UIGestureRecognizerState state = gestureRecognizer.state;
+    
+    
+    if (indexPath != nil){
+        switch (state) {
+            case UIGestureRecognizerStateBegan:
+                break;
+            case UIGestureRecognizerStateChanged:
+                break;
+            case UIGestureRecognizerStateEnded: {
+                KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
+                NSManagedObject *object = [collectionDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+                
+                [[self managedObjectContext] deleteObject:object];
+                [[self managedObjectContext] save:nil];
+                //[self.collectionViewController.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+               
+                [self.collectionViewController.collectionView reloadData];
+                
+                break;
+            }
+            default:
+                break;
+        }
+    }
 }
 
 @end

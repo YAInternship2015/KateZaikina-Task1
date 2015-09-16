@@ -7,10 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "KVZDataSourceFactory.h"
+#import "KVZDataManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [KVZDataSourceFactory coffeeModelArray];
     return YES;
 }
 

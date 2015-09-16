@@ -8,6 +8,7 @@
 
 #import "KVZNewObjectViewController.h"
 #import "KVZStringValidator.h"
+#import "KVZDataManager.h"
 
 @interface KVZNewObjectViewController ()
 
@@ -23,14 +24,14 @@
     [super viewDidLoad];
 }
 
+
 - (IBAction)saveNewCoffeeButton:(UIButton *)sender {
     [self.addCoffeeField resignFirstResponder];
     
     KVZStringValidator *validator = [[KVZStringValidator alloc] init];
     NSError *error = nil;
     if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]) {
-        [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
-
+       [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
         NSString *localizedSucceessTitleString = NSLocalizedString(@"New Coffee Drink is saved!", nil);
         NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
 
@@ -57,6 +58,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 
 
 @end

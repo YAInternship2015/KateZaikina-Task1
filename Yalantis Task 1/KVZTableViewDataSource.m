@@ -8,53 +8,92 @@
 
 #import "KVZTableViewDataSource.h"
 #import "KVZTableViewCell.h"
-#import "KVZArrayDataSource.h"
 #import "KVZConstants.h"
+#import "KVZDataManager.h"
 
 @interface KVZTableViewDataSource ()
-@property (nonatomic, strong) KVZArrayDataSource *arrayDataSource;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) UITableView *tableView;
+
 @end
 
 @implementation KVZTableViewDataSource
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        KVZArrayDataSource *array = [[KVZArrayDataSource alloc] init];
-        self.arrayDataSource = array;
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(reloadViewNotification:)
-                                                     name:KVZDataFileContentDidChangeNotificationName
-                                                   object:nil];
+- (NSManagedObjectContext *)managedObjectContext {
+    if (!_managedObjectContext) {
+        _managedObjectContext = [[KVZDataManager sharedManager] managedObjectContext];
     }
-    return self;
-}
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    return _managedObjectContext;
 }
 
-- (void)reloadViewNotification:(NSNotification *)notification {
-    KVZArrayDataSource *array = [[KVZArrayDataSource alloc] init];
-    self.arrayDataSource = array;
-    if ([self.delegate respondsToSelector:@selector(tableDataSourceDidChange:)]){
-        [self.delegate tableDataSourceDidChange:self];
+#pragma mark - NSFetchedResultsController
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
     }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"KVZCoffee" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"typeName" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc]
+                                                             initWithFetchRequest:fetchRequest
+                                                             managedObjectContext:self.managedObjectContext
+                                                             sectionNameKeyPath:nil cacheName:nil];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    return _fetchedResultsController;
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.arrayDataSource.array count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"coffeeCell";
-    KVZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    KVZCoffee *coffee = [self.arrayDataSource.array objectAtIndex:indexPath.row];
-    [cell setUpWithCoffee:coffee];
-    
+    KVZTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"coffeeCell" forIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+
+- (void)configureCell:(KVZTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    KVZCoffee *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell setUpWithCoffee:object];
 }
 
 @end
