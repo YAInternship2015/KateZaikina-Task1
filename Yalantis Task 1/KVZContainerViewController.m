@@ -11,6 +11,7 @@
 #import "KVZCollectionViewDataSource.h"
 #import "KVZTableViewDataSource.h"
 #import "KVZDataManager.h"
+#import "KVZCoffee.h"
 
 @interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
@@ -31,6 +32,8 @@
 
     UICollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
     self.collectionViewController = collectionViewController;
+    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
+    collectionDataSource.fetchedResultsController.delegate = self;
     
     [self addChildViewController:tableViewController];
     self.tableViewController.tableView.frame = self.view.frame;
@@ -44,11 +47,9 @@
     UILongPressGestureRecognizer *longPress
     = [[UILongPressGestureRecognizer alloc]
        initWithTarget:self action:@selector(handleLongPress:)];
-    CGFloat minimumPressDuration = 0.5;
+    float minimumPressDuration = 0.5;
     longPress.minimumPressDuration = minimumPressDuration;
     [self.collectionViewController.collectionView addGestureRecognizer:longPress];
-    
-
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -109,65 +110,90 @@
     
 }
 
-#pragma mark - TableView NSFetchedResultsController
+#pragma mark - NSFetchedResultsController
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableViewController.tableView beginUpdates];
+    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
+    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
+    
+    if ([tableDataSource.fetchedResultsController isEqual:controller]) {
+        UITableView *tableView = self.tableViewController.tableView;
+        [tableView beginUpdates];
+    } else if ([collectionDataSource.fetchedResultsController isEqual:controller]) {
+    }
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    UITableView *tableView = self.tableViewController.tableView;
+    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
+    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
     
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
+    if ([tableDataSource.fetchedResultsController isEqual:controller]) {
+        UITableView *tableView = self.tableViewController.tableView;
+        switch (type) {
+            case NSFetchedResultsChangeInsert: {
+                [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
+            }
+                break;
+            case NSFetchedResultsChangeDelete: {
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+                break;
+            case NSFetchedResultsChangeUpdate: {
+                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+                break;
+            default: {
+                
+            }
+        }
+    } else if ([collectionDataSource.fetchedResultsController isEqual:controller]) {
+        UICollectionView *collectionView = self.collectionViewController.collectionView;
+        switch(type) {
+            case NSFetchedResultsChangeInsert: {
+                [collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+            }
+                break;
+            case NSFetchedResultsChangeDelete: {
+                [collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            }
+                break;
+            case NSFetchedResultsChangeUpdate: {
+                [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            }
+                break;
+            default: {
+                  
+            }
+        }
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableViewController.tableView endUpdates];
+    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
+    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
+    
+    if ([tableDataSource.fetchedResultsController isEqual:controller]) {
+        UITableView *tableView = self.tableViewController.tableView;
+        [tableView endUpdates];
+    } else if ([collectionDataSource.fetchedResultsController isEqual:controller]) {
+  }
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    CGPoint location = [gestureRecognizer locationInView:self.collectionViewController.collectionView];
-    NSIndexPath *indexPath = [self.collectionViewController.collectionView indexPathForItemAtPoint:location];
-    UIGestureRecognizerState state = gestureRecognizer.state;
-    
-    
-    if (indexPath != nil){
-        switch (state) {
-            case UIGestureRecognizerStateBegan:
-                break;
-            case UIGestureRecognizerStateChanged:
-                break;
-            case UIGestureRecognizerStateEnded: {
-                KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
-                NSManagedObject *object = [collectionDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-                
-                [[self managedObjectContext] deleteObject:object];
-                [[self managedObjectContext] save:nil];
-                //[self.collectionViewController.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-               
-                [self.collectionViewController.collectionView reloadData];
-                
-                break;
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint location = [gestureRecognizer locationInView:self.collectionViewController.collectionView];
+        NSIndexPath *indexPath = [self.collectionViewController.collectionView indexPathForItemAtPoint:location];
+        
+        if (indexPath != nil){
+            KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
+            NSManagedObject *object = [collectionDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+            [[self managedObjectContext] deleteObject:object];
+            
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
             }
-            default:
-                break;
         }
     }
 }

@@ -8,13 +8,11 @@
 
 #import "KVZNewObjectViewController.h"
 #import "KVZStringValidator.h"
-#import "KVZDataManager.h"
 
 @interface KVZNewObjectViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UITextField *addCoffeeField;
-@property (nonatomic, strong) KVZCoffee *coffeeModel;
 
 @end
 

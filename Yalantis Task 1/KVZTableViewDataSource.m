@@ -12,8 +12,8 @@
 #import "KVZDataManager.h"
 
 @interface KVZTableViewDataSource ()
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
