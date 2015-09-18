@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+
+#warning этот класс вроде никем не используется, можно его удалить
 @interface KVZDataSourceFactory : NSObject
 
 + (void)coffeeModelArray;

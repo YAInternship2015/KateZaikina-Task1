@@ -28,6 +28,7 @@
     UITableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
     self.tableViewController = tableViewController;
     KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
+#warning делегатом fetchedResultsController должен быть либо сам датасорс, либо табличный/коллекшн вью контроллеры. Иначе получается, что у Вас этот ContainerViewController имеет кучу ответственностей
     tableDataSource.fetchedResultsController.delegate = self;
 
     UICollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
@@ -44,6 +45,7 @@
     collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
     [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
     
+#warning эта логика должна быть внутри collectionViewController, это специфичная для него логика
     UILongPressGestureRecognizer *longPress
     = [[UILongPressGestureRecognizer alloc]
        initWithTarget:self action:@selector(handleLongPress:)];
@@ -76,7 +78,9 @@
 
 #pragma mark - KVZNewObjectViewControllerDelegate
 
+#warning логика создания новой модели должна быть инкапсулирована в KVZNewObjectViewController, зачем она здесь?
 - (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)title{
+#warning непосредственно создание модели должно делаться в классе-фабрике, типа KVZCoffeeFactory, который только и умеет, что создавать объекты KVZCoffee. После нажатия на кнопку Save KVZNewObjectViewController должен сказать дата менеджеру, чтобы тот создал модель с именем таким-то, дата менеджер говорит фабрике создать модель и затем сохраняет контекст, в котором создалась модель
     KVZCoffee *newCoffeeObject = [NSEntityDescription insertNewObjectForEntityForName:@"KVZCoffee" inManagedObjectContext:[self managedObjectContext]];
     newCoffeeObject.typeName = title;
     newCoffeeObject.imageName = @"defaultCoffee.gif";
@@ -94,6 +98,7 @@
 - (void)cycleFromViewController:(UIViewController *)oldController toViewController:(UIViewController *)newController {
     [oldController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
+#warning продолжительность анимации, как и любые другие внезапные неочевидные цифры в коде, надо объявлять константами в рамках метода (если они используются только в методе) или класса (если используется в нескольких методах)
     float animationTimeInSeconds = 0.2;
     
     [self transitionFromViewController:oldController toViewController:newController
@@ -150,6 +155,7 @@
         UICollectionView *collectionView = self.collectionViewController.collectionView;
         switch(type) {
             case NSFetchedResultsChangeInsert: {
+#warning здесь приложение падает, если сразу после запуска перейти на экран создания нового айтема, ввести какой-то текст и нажать Save
                 [collectionView insertItemsAtIndexPaths:@[newIndexPath]];
             }
                 break;
