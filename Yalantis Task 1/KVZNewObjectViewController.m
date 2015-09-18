@@ -8,6 +8,7 @@
 
 #import "KVZNewObjectViewController.h"
 #import "KVZStringValidator.h"
+#import "KVZDataSourceFactory.h"
 
 @interface KVZNewObjectViewController ()
 
@@ -28,8 +29,9 @@
     
     KVZStringValidator *validator = [[KVZStringValidator alloc] init];
     NSError *error = nil;
-    if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]) {
-       [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
+    NSString *coffeeName = self.addCoffeeField.text;
+    if ([validator isValidModelTitle:coffeeName error:&error]) {
+        KVZCoffee *newCoffeeObject = [KVZDataSourceFactory createNewCoffeeModel:coffeeName];
         NSString *localizedSucceessTitleString = NSLocalizedString(@"New Coffee Drink is saved!", nil);
         NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
 
@@ -48,6 +50,7 @@
                                                  otherButtonTitles:nil, nil];
         [alertView show];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITextFieldDelegate

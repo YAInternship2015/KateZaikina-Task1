@@ -10,10 +10,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#warning скорее KVZCoreDataManager
-@interface KVZDataManager : NSObject
+@interface KVZCoreDataManager : NSObject
 
-+ (KVZDataManager *) sharedManager;
++ (KVZCoreDataManager *) sharedManager;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

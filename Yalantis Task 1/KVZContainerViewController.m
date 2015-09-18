@@ -10,13 +10,15 @@
 #import "KVZNewObjectViewController.h"
 #import "KVZCollectionViewDataSource.h"
 #import "KVZTableViewDataSource.h"
-#import "KVZDataManager.h"
+#import "KVZCoreDataManager.h"
 #import "KVZCoffee.h"
+#import "KVZTableViewController.h"
+#import "KVZCollectionViewController.h"
 
-@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
+@interface KVZContainerViewController () <NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) UITableViewController *tableViewController;
-@property (strong, nonatomic) UICollectionViewController *collectionViewController;
+@property (strong, nonatomic) KVZTableViewController *tableViewController;
+@property (strong, nonatomic) KVZCollectionViewController *collectionViewController;
 
 @end
 
@@ -25,37 +27,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
+    KVZTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
     self.tableViewController = tableViewController;
-    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
-#warning делегатом fetchedResultsController должен быть либо сам датасорс, либо табличный/коллекшн вью контроллеры. Иначе получается, что у Вас этот ContainerViewController имеет кучу ответственностей
-    tableDataSource.fetchedResultsController.delegate = self;
 
-    UICollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
+    KVZCollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
     self.collectionViewController = collectionViewController;
-    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
-    collectionDataSource.fetchedResultsController.delegate = self;
     
-    [self addChildViewController:tableViewController];
+    [self addChildViewController:self.tableViewController];
     self.tableViewController.tableView.frame = self.view.frame;
-    [self.view addSubview:tableViewController.tableView];
-    [tableViewController didMoveToParentViewController:self];
-
-    UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
-    collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
-    [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
-    
-#warning эта логика должна быть внутри collectionViewController, это специфичная для него логика
-    UILongPressGestureRecognizer *longPress
-    = [[UILongPressGestureRecognizer alloc]
-       initWithTarget:self action:@selector(handleLongPress:)];
-    float minimumPressDuration = 0.5;
-    longPress.minimumPressDuration = minimumPressDuration;
-    [self.collectionViewController.collectionView addGestureRecognizer:longPress];
+    [self.view addSubview:self.tableViewController.tableView];
+    [self.tableViewController didMoveToParentViewController:self];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
-    return [[KVZDataManager sharedManager] managedObjectContext];
+    return [[KVZCoreDataManager sharedManager] managedObjectContext];
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
@@ -67,40 +52,13 @@
     }
 }
 
-#pragma mark - UIStoryboard
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"addObjectViewControllerSegue"]) {
-        KVZNewObjectViewController *addObjectViewController = segue.destinationViewController;
-        addObjectViewController.delegate = self;
-    }
-}
-
-#pragma mark - KVZNewObjectViewControllerDelegate
-
-#warning логика создания новой модели должна быть инкапсулирована в KVZNewObjectViewController, зачем она здесь?
-- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)title{
-#warning непосредственно создание модели должно делаться в классе-фабрике, типа KVZCoffeeFactory, который только и умеет, что создавать объекты KVZCoffee. После нажатия на кнопку Save KVZNewObjectViewController должен сказать дата менеджеру, чтобы тот создал модель с именем таким-то, дата менеджер говорит фабрике создать модель и затем сохраняет контекст, в котором создалась модель
-    KVZCoffee *newCoffeeObject = [NSEntityDescription insertNewObjectForEntityForName:@"KVZCoffee" inManagedObjectContext:[self managedObjectContext]];
-    newCoffeeObject.typeName = title;
-    newCoffeeObject.imageName = @"defaultCoffee.gif";
-    
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma mark - Nested Controller methods
 
 - (void)cycleFromViewController:(UIViewController *)oldController toViewController:(UIViewController *)newController {
     [oldController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
-#warning продолжительность анимации, как и любые другие внезапные неочевидные цифры в коде, надо объявлять константами в рамках метода (если они используются только в методе) или класса (если используется в нескольких методах)
+
     float animationTimeInSeconds = 0.2;
-    
     [self transitionFromViewController:oldController toViewController:newController
                               duration:animationTimeInSeconds
                                options:0
@@ -113,95 +71,6 @@
                                 [newController didMoveToParentViewController:self];
                             }];
     
-}
-
-#pragma mark - NSFetchedResultsController
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
-    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
-    
-    if ([tableDataSource.fetchedResultsController isEqual:controller]) {
-        UITableView *tableView = self.tableViewController.tableView;
-        [tableView beginUpdates];
-    } else if ([collectionDataSource.fetchedResultsController isEqual:controller]) {
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
-    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
-    
-    if ([tableDataSource.fetchedResultsController isEqual:controller]) {
-        UITableView *tableView = self.tableViewController.tableView;
-        switch (type) {
-            case NSFetchedResultsChangeInsert: {
-                [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
-            }
-                break;
-            case NSFetchedResultsChangeDelete: {
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
-                break;
-            case NSFetchedResultsChangeUpdate: {
-                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
-                break;
-            default: {
-                
-            }
-        }
-    } else if ([collectionDataSource.fetchedResultsController isEqual:controller]) {
-        UICollectionView *collectionView = self.collectionViewController.collectionView;
-        switch(type) {
-            case NSFetchedResultsChangeInsert: {
-#warning здесь приложение падает, если сразу после запуска перейти на экран создания нового айтема, ввести какой-то текст и нажать Save
-                [collectionView insertItemsAtIndexPaths:@[newIndexPath]];
-            }
-                break;
-            case NSFetchedResultsChangeDelete: {
-                [collectionView deleteItemsAtIndexPaths:@[indexPath]];
-            }
-                break;
-            case NSFetchedResultsChangeUpdate: {
-                [collectionView reloadItemsAtIndexPaths:@[indexPath]];
-            }
-                break;
-            default: {
-                  
-            }
-        }
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    KVZTableViewDataSource *tableDataSource = (KVZTableViewDataSource *)self.tableViewController.tableView.dataSource;
-    KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
-    
-    if ([tableDataSource.fetchedResultsController isEqual:controller]) {
-        UITableView *tableView = self.tableViewController.tableView;
-        [tableView endUpdates];
-    } else if ([collectionDataSource.fetchedResultsController isEqual:controller]) {
-  }
-}
-
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        CGPoint location = [gestureRecognizer locationInView:self.collectionViewController.collectionView];
-        NSIndexPath *indexPath = [self.collectionViewController.collectionView indexPathForItemAtPoint:location];
-        
-        if (indexPath != nil){
-            KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionViewController.collectionView.dataSource;
-            NSManagedObject *object = [collectionDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-            [[self managedObjectContext] deleteObject:object];
-            
-            NSError *error = nil;
-            if (![self.managedObjectContext save:&error]) {
-                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                abort();
-            }
-        }
-    }
 }
 
 @end

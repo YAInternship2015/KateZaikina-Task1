@@ -9,7 +9,7 @@
 #import "KVZCollectionViewDataSource.h"
 #import "KVZCollectionViewCell.h"
 #import "KVZConstants.h"
-#import "KVZDataManager.h"
+#import "KVZCoreDataManager.h"
 
 
 @interface KVZCollectionViewDataSource ()
@@ -22,7 +22,7 @@
 
 - (NSManagedObjectContext *)managedObjectContext {
     if (!_managedObjectContext) {
-        _managedObjectContext = [[KVZDataManager sharedManager] managedObjectContext];
+        _managedObjectContext = [[KVZCoreDataManager sharedManager] managedObjectContext];
     }
        return _managedObjectContext;
 }

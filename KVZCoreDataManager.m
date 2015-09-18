@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 kateryna.zaikina. All rights reserved.
 //
 
-#import "KVZDataManager.h"
+#import "KVZCoreDataManager.h"
 
-@implementation KVZDataManager
+@implementation KVZCoreDataManager
 
-+ (KVZDataManager *)sharedManager {
-    static KVZDataManager *manager = nil;
++ (KVZCoreDataManager *)sharedManager {
+    static KVZCoreDataManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[KVZDataManager alloc] init];
+        manager = [[KVZCoreDataManager alloc] init];
     });
     return manager;
 }

@@ -7,27 +7,16 @@
 //
 
 #import "KVZDataSourceFactory.h"
-#import "KVZCoffee.h"
-#import "KVZDataManager.h"
+#import "KVZCoreDataManager.h"
 
 @implementation KVZDataSourceFactory
 
-+ (void)coffeeModelArray {
-  NSManagedObjectContext *mc =[[KVZDataManager sharedManager] managedObjectContext];
-    
-    NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
-    
-    NSArray *coffeeDictionaryArray = [[NSArray alloc] initWithContentsOfFile:coffeePath];
-    NSMutableArray *array = [NSMutableArray array];
-    NSLog(@"%@", coffeeDictionaryArray);
-
-    for (NSDictionary *coffeeDictionary in coffeeDictionaryArray){
-        KVZCoffee *coffeeObject = [NSEntityDescription insertNewObjectForEntityForName:@"KVZCoffee" inManagedObjectContext:mc];
-        coffeeObject.typeName = [coffeeDictionary objectForKey:@"typeName"];
-        coffeeObject.imageName = [coffeeDictionary objectForKey:@"imageName"];
-        [array addObject:coffeeObject];
-    }
-    [mc save:nil];
++ (KVZCoffee *)createNewCoffeeModel:(NSString *)typeName {
+    NSManagedObjectContext *moc = [[KVZCoreDataManager sharedManager] managedObjectContext];
+    KVZCoffee *coffee = [NSEntityDescription insertNewObjectForEntityForName:@"KVZCoffee" inManagedObjectContext:moc];
+    coffee.typeName = typeName;
+    coffee.imageName = @"defaultCoffee.gif";
+                         return coffee;
 }
 
 @end
