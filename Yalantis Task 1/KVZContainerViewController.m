@@ -40,10 +40,6 @@
     [self.view addSubview:tableViewController.tableView];
     [tableViewController didMoveToParentViewController:self];
 
-    UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
-    collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
-    [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
-    
     UILongPressGestureRecognizer *longPress
     = [[UILongPressGestureRecognizer alloc]
        initWithTarget:self action:@selector(handleLongPress:)];
