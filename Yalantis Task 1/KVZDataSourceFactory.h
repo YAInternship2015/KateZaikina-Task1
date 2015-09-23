@@ -13,6 +13,7 @@
 
 @interface KVZDataSourceFactory : NSObject
 
+#warning лучше newCoffeeModel:
 + (KVZCoffee *)createNewCoffeeModel:(NSString *)typeName;
 
 @end

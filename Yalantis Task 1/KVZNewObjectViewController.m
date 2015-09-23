@@ -19,6 +19,7 @@
 
 @implementation KVZNewObjectViewController
 
+#warning метод нужно удалить
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -31,6 +32,7 @@
     NSError *error = nil;
     NSString *coffeeName = self.addCoffeeField.text;
     if ([validator isValidModelTitle:coffeeName error:&error]) {
+#warning если возвращаемое значение далее никем не используется, лучше вывать метод и не приваивать его возвращаемое значение никуда
         KVZCoffee *newCoffeeObject = [KVZDataSourceFactory createNewCoffeeModel:coffeeName];
         NSString *localizedSucceessTitleString = NSLocalizedString(@"New Coffee Drink is saved!", nil);
         NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);

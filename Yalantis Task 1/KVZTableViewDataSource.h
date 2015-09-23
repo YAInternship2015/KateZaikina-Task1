@@ -12,6 +12,7 @@
 
 @interface KVZTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
+#warning (nonatomic, strong)
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

@@ -58,6 +58,7 @@
     [oldController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
 
+#warning static const NSTimeInterval kAnimationDuration = 0.2;
     float animationTimeInSeconds = 0.2;
     [self transitionFromViewController:oldController toViewController:newController
                               duration:animationTimeInSeconds

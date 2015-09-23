@@ -23,6 +23,7 @@ static NSString * const reuseIdentifier = @"Cell";
     KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionView.dataSource;
     collectionDataSource.fetchedResultsController.delegate = self;
     
+#warning рекогнайзер надо добавить в сториборде
     UILongPressGestureRecognizer *longPress
     = [[UILongPressGestureRecognizer alloc]
        initWithTarget:self action:@selector(handleLongPress:)];
