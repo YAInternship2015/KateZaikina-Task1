@@ -38,7 +38,8 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"KVZCoffee" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    [fetchRequest setFetchBatchSize:20];
+    static const NSInteger kFetchBatchSize = 20;
+    [fetchRequest setFetchBatchSize:kFetchBatchSize];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"typeName" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];

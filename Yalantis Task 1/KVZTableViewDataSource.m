@@ -35,9 +35,9 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"KVZCoffee" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
-    
-#warning размер "пачки" надо оюъявить константой. Во втором датасорсе тоже
-    [fetchRequest setFetchBatchSize:20];
+
+    static const NSInteger kFetchBatchSize = 20;
+    [fetchRequest setFetchBatchSize:kFetchBatchSize];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"typeName" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
@@ -48,8 +48,7 @@
                                                              initWithFetchRequest:fetchRequest
                                                              managedObjectContext:self.managedObjectContext
                                                              sectionNameKeyPath:nil cacheName:nil];
-#warning зачем здесь сеттить делегат, если затем им станет вью контроллер?
-    aFetchedResultsController.delegate = self;
+
     self.fetchedResultsController = aFetchedResultsController;
     
     NSError *error = nil;

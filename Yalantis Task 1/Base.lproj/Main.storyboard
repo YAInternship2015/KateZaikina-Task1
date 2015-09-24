@@ -189,10 +189,12 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="31W-SP-bTG">
                                             <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                            <gestureRecognizers/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="31W-SP-bTG" secondAttribute="trailing" id="RLL-d3-g2j"/>
                                     <constraint firstItem="31W-SP-bTG" firstAttribute="top" secondItem="8Wb-QL-bUe" secondAttribute="top" id="abw-vZ-gEq"/>
@@ -205,13 +207,19 @@
                             </collectionViewCell>
                         </cells>
                         <connections>
-                            <outlet property="dataSource" destination="yVS-AO-at1" id="44z-mz-Zva"/>
-                            <outlet property="delegate" destination="37U-zq-6DP" id="XW0-HH-V6J"/>
+                            <outlet property="dataSource" destination="yVS-AO-at1" id="86p-iM-aKM"/>
+                            <outletCollection property="gestureRecognizers" destination="9RF-8y-Z6n" appends="YES" id="WJf-6c-Ybf"/>
                         </connections>
                     </collectionView>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNB-3U-drD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="yVS-AO-at1" customClass="KVZCollectionViewDataSource"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="9RF-8y-Z6n">
+                    <connections>
+                        <action selector="handleLongPress:" destination="37U-zq-6DP" id="5QN-a3-4h2"/>
+                        <outlet property="delegate" destination="37U-zq-6DP" id="GEd-9i-AiO"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1029" y="955"/>
         </scene>

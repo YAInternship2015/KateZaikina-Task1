@@ -9,6 +9,7 @@
 #import "KVZNewObjectViewController.h"
 #import "KVZStringValidator.h"
 #import "KVZDataSourceFactory.h"
+#import "KVZCoreDataManager.h"
 
 @interface KVZNewObjectViewController ()
 
@@ -19,11 +20,9 @@
 
 @implementation KVZNewObjectViewController
 
-#warning метод нужно удалить
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (NSManagedObjectContext *)managedObjectContext {
+    return [[KVZCoreDataManager sharedManager] managedObjectContext];
 }
-
 
 - (IBAction)saveNewCoffeeButton:(UIButton *)sender {
     [self.addCoffeeField resignFirstResponder];
@@ -32,8 +31,9 @@
     NSError *error = nil;
     NSString *coffeeName = self.addCoffeeField.text;
     if ([validator isValidModelTitle:coffeeName error:&error]) {
-#warning если возвращаемое значение далее никем не используется, лучше вывать метод и не приваивать его возвращаемое значение никуда
-        KVZCoffee *newCoffeeObject = [KVZDataSourceFactory createNewCoffeeModel:coffeeName];
+        [KVZDataSourceFactory newCoffeeModel:coffeeName];
+        [[self managedObjectContext] save:&error];
+        
         NSString *localizedSucceessTitleString = NSLocalizedString(@"New Coffee Drink is saved!", nil);
         NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
 
@@ -43,7 +43,7 @@
                                                  cancelButtonTitle:localizedOkeyString
                                                  otherButtonTitles:nil, nil];
         [alertView show];
-    }else {
+    } else {
         NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:error.localizedDescription
                                                            message:error.localizedRecoverySuggestion
@@ -61,7 +61,5 @@
     [textField resignFirstResponder];
     return YES;
 }
-
-
 
 @end

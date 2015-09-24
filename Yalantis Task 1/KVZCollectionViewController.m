@@ -9,33 +9,24 @@
 #import "KVZCollectionViewController.h"
 #import "KVZCollectionViewDataSource.h"
 
+static NSString * const reuseIdentifier = @"Cell";
+
 @interface KVZCollectionViewController () <NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
 @end
 
 @implementation KVZCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     KVZCollectionViewDataSource *collectionDataSource = (KVZCollectionViewDataSource *)self.collectionView.dataSource;
     collectionDataSource.fetchedResultsController.delegate = self;
-    
-#warning рекогнайзер надо добавить в сториборде
-    UILongPressGestureRecognizer *longPress
-    = [[UILongPressGestureRecognizer alloc]
-       initWithTarget:self action:@selector(handleLongPress:)];
-    float minimumPressDuration = 0.5;
-    longPress.minimumPressDuration = minimumPressDuration;
-    [self.collectionView addGestureRecognizer:longPress];
 }
 
 #pragma mark - NSFetchedResultsController
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-   
         UICollectionView *collectionView = self.collectionView;
         switch(type) {
             case NSFetchedResultsChangeInsert: {
@@ -55,8 +46,7 @@ static NSString * const reuseIdentifier = @"Cell";
         }
 }
 
-
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+- (IBAction)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint location = [gestureRecognizer locationInView:self.collectionView];
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:location];

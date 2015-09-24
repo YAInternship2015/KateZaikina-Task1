@@ -15,6 +15,8 @@
 #import "KVZTableViewController.h"
 #import "KVZCollectionViewController.h"
 
+static const NSTimeInterval kAnimationDuration = 0.2;
+
 @interface KVZContainerViewController () <NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) KVZTableViewController *tableViewController;
@@ -57,9 +59,8 @@
 - (void)cycleFromViewController:(UIViewController *)oldController toViewController:(UIViewController *)newController {
     [oldController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
-
-#warning static const NSTimeInterval kAnimationDuration = 0.2;
-    float animationTimeInSeconds = 0.2;
+    
+    float animationTimeInSeconds = kAnimationDuration;
     [self transitionFromViewController:oldController toViewController:newController
                               duration:animationTimeInSeconds
                                options:0
