@@ -17,7 +17,6 @@
 		80014A6B1B75DCD9004A50FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80014A691B75DCD9004A50FB /* LaunchScreen.xib */; };
 		80014A771B75DCD9004A50FB /* Yalantis_Task_1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A761B75DCD9004A50FB /* Yalantis_Task_1Tests.m */; };
 		80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A871B75E130004A50FB /* KVZTableViewCell.m */; };
-		80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 80014A8A1B75E160004A50FB /* KVZCoffee.m */; };
 		80014A961B760BE3004A50FB /* americano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A8C1B760BE3004A50FB /* americano.jpg */; };
 		80014A971B760BE3004A50FB /* cappuccino.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A8D1B760BE3004A50FB /* cappuccino.jpg */; };
 		80014A981B760BE3004A50FB /* espresso.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A8E1B760BE3004A50FB /* espresso.jpg */; };
@@ -29,7 +28,11 @@
 		80014A9E1B760BE3004A50FB /* mocha.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A941B760BE3004A50FB /* mocha.jpg */; };
 		80014A9F1B760BE3004A50FB /* vienne-cappuccino.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */; };
 		8002B4161B8651D400539F5A /* KVZCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8002B4151B8651D400539F5A /* KVZCollectionViewCell.m */; };
-		8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */; };
+		801791D21BA205E1000DF536 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 801791D01BA205E1000DF536 /* Model.xcdatamodeld */; };
+		801791D51BA20720000DF536 /* KVZCoffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 801791D41BA20720000DF536 /* KVZCoffee.m */; };
+		801791DB1BA20F8A000DF536 /* KVZCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 801791DA1BA20F8A000DF536 /* KVZCoreDataManager.m */; };
+		802D24441BAC33DC00FB6E3A /* KVZTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802D24431BAC33DC00FB6E3A /* KVZTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		802D24471BAC33F300FB6E3A /* KVZCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802D24461BAC33F300FB6E3A /* KVZCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */; };
 		80922E391B89C97D002BF57C /* KVZContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80922E381B89C97D002BF57C /* KVZContainerViewController.m */; };
 		80922E3B1B89EAEA002BF57C /* coffeeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80922E3A1B89EAEA002BF57C /* coffeeList.plist */; };
@@ -68,8 +71,6 @@
 		80014A761B75DCD9004A50FB /* Yalantis_Task_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Yalantis_Task_1Tests.m; sourceTree = "<group>"; };
 		80014A861B75E130004A50FB /* KVZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZTableViewCell.h; sourceTree = "<group>"; };
 		80014A871B75E130004A50FB /* KVZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZTableViewCell.m; sourceTree = "<group>"; };
-		80014A891B75E160004A50FB /* KVZCoffee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZCoffee.h; sourceTree = "<group>"; };
-		80014A8A1B75E160004A50FB /* KVZCoffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZCoffee.m; sourceTree = "<group>"; };
 		80014A8C1B760BE3004A50FB /* americano.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = americano.jpg; path = coffee/americano.jpg; sourceTree = "<group>"; };
 		80014A8D1B760BE3004A50FB /* cappuccino.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cappuccino.jpg; path = coffee/cappuccino.jpg; sourceTree = "<group>"; };
 		80014A8E1B760BE3004A50FB /* espresso.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = espresso.jpg; path = coffee/espresso.jpg; sourceTree = "<group>"; };
@@ -82,8 +83,15 @@
 		80014A951B760BE3004A50FB /* vienne-cappuccino.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "vienne-cappuccino.jpg"; path = "coffee/vienne-cappuccino.jpg"; sourceTree = "<group>"; };
 		8002B4141B8651D400539F5A /* KVZCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZCollectionViewCell.h; sourceTree = "<group>"; };
 		8002B4151B8651D400539F5A /* KVZCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZCollectionViewCell.m; sourceTree = "<group>"; };
-		8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZArrayDataSource.h; sourceTree = "<group>"; };
-		8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZArrayDataSource.m; sourceTree = "<group>"; };
+		801791D11BA205E1000DF536 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		801791D31BA20720000DF536 /* KVZCoffee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KVZCoffee.h; path = ../KVZCoffee.h; sourceTree = "<group>"; };
+		801791D41BA20720000DF536 /* KVZCoffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KVZCoffee.m; path = ../KVZCoffee.m; sourceTree = "<group>"; };
+		801791D91BA20F8A000DF536 /* KVZCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KVZCoreDataManager.h; path = ../KVZCoreDataManager.h; sourceTree = "<group>"; };
+		801791DA1BA20F8A000DF536 /* KVZCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KVZCoreDataManager.m; path = ../KVZCoreDataManager.m; sourceTree = "<group>"; };
+		802D24421BAC33DC00FB6E3A /* KVZTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZTableViewController.h; sourceTree = "<group>"; };
+		802D24431BAC33DC00FB6E3A /* KVZTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZTableViewController.m; sourceTree = "<group>"; };
+		802D24451BAC33F300FB6E3A /* KVZCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZCollectionViewController.h; sourceTree = "<group>"; };
+		802D24461BAC33F300FB6E3A /* KVZCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZCollectionViewController.m; sourceTree = "<group>"; };
 		8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZDataSourceFactory.h; sourceTree = "<group>"; };
 		8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZDataSourceFactory.m; sourceTree = "<group>"; };
 		80922E371B89C97D002BF57C /* KVZContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZContainerViewController.h; sourceTree = "<group>"; };
@@ -144,6 +152,7 @@
 				80014A641B75DCD9004A50FB /* Main.storyboard */,
 				80014A691B75DCD9004A50FB /* LaunchScreen.xib */,
 				80014A671B75DCD9004A50FB /* Images.xcassets */,
+				801791D01BA205E1000DF536 /* Model.xcdatamodeld */,
 				80014A5A1B75DCD9004A50FB /* Supporting Files */,
 			);
 			path = "Yalantis Task 1";
@@ -196,12 +205,12 @@
 		8085E40A1B7F85ED00B0C261 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				80014A891B75E160004A50FB /* KVZCoffee.h */,
-				80014A8A1B75E160004A50FB /* KVZCoffee.m */,
+				801791D31BA20720000DF536 /* KVZCoffee.h */,
+				801791D41BA20720000DF536 /* KVZCoffee.m */,
+				801791D91BA20F8A000DF536 /* KVZCoreDataManager.h */,
+				801791DA1BA20F8A000DF536 /* KVZCoreDataManager.m */,
 				8085E4071B7F64F900B0C261 /* KVZDataSourceFactory.h */,
 				8085E4081B7F64F900B0C261 /* KVZDataSourceFactory.m */,
-				8085E4041B7F5C5400B0C261 /* KVZArrayDataSource.h */,
-				8085E4051B7F5C5400B0C261 /* KVZArrayDataSource.m */,
 				80009B061B98C941003C8F86 /* KVZTableViewDataSource.h */,
 				80009B071B98C941003C8F86 /* KVZTableViewDataSource.m */,
 				80009B091B98C95B003C8F86 /* KVZCollectionViewDataSource.h */,
@@ -215,6 +224,10 @@
 			children = (
 				80922E371B89C97D002BF57C /* KVZContainerViewController.h */,
 				80922E381B89C97D002BF57C /* KVZContainerViewController.m */,
+				802D24421BAC33DC00FB6E3A /* KVZTableViewController.h */,
+				802D24431BAC33DC00FB6E3A /* KVZTableViewController.m */,
+				802D24451BAC33F300FB6E3A /* KVZCollectionViewController.h */,
+				802D24461BAC33F300FB6E3A /* KVZCollectionViewController.m */,
 				80922E3C1B8A118F002BF57C /* KVZNewObjectViewController.h */,
 				80922E3D1B8A118F002BF57C /* KVZNewObjectViewController.m */,
 			);
@@ -297,7 +310,7 @@
 		80014A4F1B75DCD9004A50FB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = kateryna.zaikina;
 				TargetAttributes = {
 					80014A561B75DCD9004A50FB = {
@@ -367,17 +380,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8085E4091B7F64F900B0C261 /* KVZDataSourceFactory.m in Sources */,
+				801791D51BA20720000DF536 /* KVZCoffee.m in Sources */,
 				80009B0B1B98C95B003C8F86 /* KVZCollectionViewDataSource.m in Sources */,
 				80014A601B75DCD9004A50FB /* AppDelegate.m in Sources */,
-				8085E4061B7F5C5400B0C261 /* KVZArrayDataSource.m in Sources */,
 				80922E411B8A29EA002BF57C /* KVZStringValidator.m in Sources */,
-				80014A8B1B75E160004A50FB /* KVZCoffee.m in Sources */,
 				80014A5D1B75DCD9004A50FB /* main.m in Sources */,
 				80922E391B89C97D002BF57C /* KVZContainerViewController.m in Sources */,
+				802D24441BAC33DC00FB6E3A /* KVZTableViewController.m in Sources */,
 				80009B081B98C941003C8F86 /* KVZTableViewDataSource.m in Sources */,
+				801791DB1BA20F8A000DF536 /* KVZCoreDataManager.m in Sources */,
 				80922E3E1B8A118F002BF57C /* KVZNewObjectViewController.m in Sources */,
 				80014A881B75E130004A50FB /* KVZTableViewCell.m in Sources */,
+				801791D21BA205E1000DF536 /* Model.xcdatamodeld in Sources */,
 				8002B4161B8651D400539F5A /* KVZCollectionViewCell.m in Sources */,
+				802D24471BAC33F300FB6E3A /* KVZCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +456,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -507,6 +524,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Yalantis Task 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kateryna.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -517,6 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Yalantis Task 1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kateryna.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -535,6 +554,7 @@
 				);
 				INFOPLIST_FILE = "Yalantis Task 1Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kateryna.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yalantis Task 1.app/Yalantis Task 1";
 			};
@@ -550,6 +570,7 @@
 				);
 				INFOPLIST_FILE = "Yalantis Task 1Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kateryna.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yalantis Task 1.app/Yalantis Task 1";
 			};
@@ -586,6 +607,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		801791D01BA205E1000DF536 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				801791D11BA205E1000DF536 /* Model.xcdatamodel */,
+			);
+			currentVersion = 801791D11BA205E1000DF536 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 80014A4F1B75DCD9004A50FB /* Project object */;
 }

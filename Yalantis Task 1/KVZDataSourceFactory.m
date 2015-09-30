@@ -7,28 +7,18 @@
 //
 
 #import "KVZDataSourceFactory.h"
-#import "KVZCoffee.h"
-
-#define DOCUMENTS [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+#import "KVZCoreDataManager.h"
 
 @implementation KVZDataSourceFactory
 
-+ (NSArray *)coffeeModelArray {
-    NSString *coffeePath = [[NSBundle mainBundle] pathForResource:@"coffeeList" ofType:@"plist"];
-    NSString *coffeeDocumentsPath = [DOCUMENTS stringByAppendingPathComponent:@"coffeeList.plist"];
-   [[NSFileManager defaultManager] copyItemAtPath:coffeePath toPath:coffeeDocumentsPath error:nil];
-    
-    NSArray *coffeeDictionaryArray = [[NSArray alloc] initWithContentsOfFile:coffeeDocumentsPath];
-    NSMutableArray *array = [NSMutableArray array];
-    
-
-    for (NSDictionary *coffeeDictionary in coffeeDictionaryArray){
-        KVZCoffee *coffeeObject = [[KVZCoffee alloc] initWithTypeName:[coffeeDictionary objectForKey:@"typeName"]
-                                                            imageName:[coffeeDictionary objectForKey:@"imageName"]];
-        [array addObject:coffeeObject];
-    }
-    NSArray *coffeeArray = [NSArray arrayWithArray:array];
-    return coffeeArray;
++ (KVZCoffee *)newCoffeeModel:(NSString *)typeName {
+    NSManagedObjectContext *moc = [[KVZCoreDataManager sharedManager] managedObjectContext];
+    KVZCoffee *coffee = [NSEntityDescription insertNewObjectForEntityForName:@"KVZCoffee" inManagedObjectContext:moc];
+    coffee.typeName = typeName;
+    static NSString * const defaultCoffeeImageKey = @"defaultCoffee.gif";
+    coffee.imageName = defaultCoffeeImageKey;
+    return coffee;
 }
+
 
 @end

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "KVZCoffee.h"
 
 @interface KVZDataSourceFactory : NSObject
 
-+ (NSArray *)coffeeModelArray;
++ (KVZCoffee *)newCoffeeModel:(NSString *)typeName;
 
 @end

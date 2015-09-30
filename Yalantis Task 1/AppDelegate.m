@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "KVZDataSourceFactory.h"
+#import "KVZCoreDataManager.h"
 
 @implementation AppDelegate
 

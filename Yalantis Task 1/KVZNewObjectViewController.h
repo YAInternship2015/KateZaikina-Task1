@@ -7,19 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KVZCoffee.h"
 
 @class KVZNewObjectViewController;
 
-@protocol KVZNewObjectViewControllerDelegate <NSObject>
-
-- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)
-title;
-
-@end
-
 @interface KVZNewObjectViewController : UIViewController <UITextFieldDelegate>
-
-@property (nonatomic, weak) id<KVZNewObjectViewControllerDelegate> delegate;
 
 @end

@@ -8,19 +8,20 @@
 
 #import "KVZNewObjectViewController.h"
 #import "KVZStringValidator.h"
+#import "KVZDataSourceFactory.h"
+#import "KVZCoreDataManager.h"
 
 @interface KVZNewObjectViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UITextField *addCoffeeField;
-@property (nonatomic, strong) KVZCoffee *coffeeModel;
 
 @end
 
 @implementation KVZNewObjectViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (NSManagedObjectContext *)managedObjectContext {
+    return [[KVZCoreDataManager sharedManager] managedObjectContext];
 }
 
 - (IBAction)saveNewCoffeeButton:(UIButton *)sender {
@@ -28,9 +29,11 @@
     
     KVZStringValidator *validator = [[KVZStringValidator alloc] init];
     NSError *error = nil;
-    if ([validator isValidModelTitle:self.addCoffeeField.text error:&error]) {
-        [self.delegate addObjectViewController:self didCreateModelWithTitle:self.addCoffeeField.text];
-
+    NSString *coffeeName = self.addCoffeeField.text;
+    if ([validator isValidModelTitle:coffeeName error:&error]) {
+        [KVZDataSourceFactory newCoffeeModel:coffeeName];
+        [[self managedObjectContext] save:&error];
+        
         NSString *localizedSucceessTitleString = NSLocalizedString(@"New Coffee Drink is saved!", nil);
         NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
 
@@ -40,7 +43,7 @@
                                                  cancelButtonTitle:localizedOkeyString
                                                  otherButtonTitles:nil, nil];
         [alertView show];
-    }else {
+    } else {
         NSString *localizedOkeyString = NSLocalizedString(@"Okey", nil);
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:error.localizedDescription
                                                            message:error.localizedRecoverySuggestion
@@ -49,6 +52,7 @@
                                                  otherButtonTitles:nil, nil];
         [alertView show];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -57,6 +61,5 @@
     [textField resignFirstResponder];
     return YES;
 }
-
 
 @end

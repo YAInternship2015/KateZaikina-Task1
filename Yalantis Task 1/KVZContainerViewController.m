@@ -8,15 +8,19 @@
 
 #import "KVZContainerViewController.h"
 #import "KVZNewObjectViewController.h"
-#import "KVZArrayDataSource.h"
-#import "KVZDataSourceFactory.h"
 #import "KVZCollectionViewDataSource.h"
 #import "KVZTableViewDataSource.h"
+#import "KVZCoreDataManager.h"
+#import "KVZCoffee.h"
+#import "KVZTableViewController.h"
+#import "KVZCollectionViewController.h"
 
-@interface KVZContainerViewController () <KVZNewObjectViewControllerDelegate, KVZTableViewDataSourceDelegate, KVZCollectionViewDataSourceDelegate>
+static const NSTimeInterval kAnimationDuration = 0.2;
 
-@property (strong, nonatomic) UITableViewController *tableViewController;
-@property (strong, nonatomic) UICollectionViewController *collectionViewController;
+@interface KVZContainerViewController () <NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
+
+@property (strong, nonatomic) KVZTableViewController *tableViewController;
+@property (strong, nonatomic) KVZCollectionViewController *collectionViewController;
 
 @end
 
@@ -25,20 +29,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
+    KVZTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZTableViewController"];
     self.tableViewController = tableViewController;
 
-    UICollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
+    KVZCollectionViewController *collectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"KVZCollectionViewController"];
     self.collectionViewController = collectionViewController;
-
-    [self addChildViewController:tableViewController];
+    
+    [self addChildViewController:self.tableViewController];
     self.tableViewController.tableView.frame = self.view.frame;
-    [self.view addSubview:tableViewController.tableView];
-    [tableViewController didMoveToParentViewController:self];
+    [self.view addSubview:self.tableViewController.tableView];
+    [self.tableViewController didMoveToParentViewController:self];
+}
 
-    UIEdgeInsets collectionViewFixedContentInset = self.collectionViewController.collectionView.contentInset;
-    collectionViewFixedContentInset.top = self.navigationController.navigationBar.bounds.size.height;
-    [collectionViewController.collectionView setContentInset:collectionViewFixedContentInset];
+- (NSManagedObjectContext *)managedObjectContext {
+    return [[KVZCoreDataManager sharedManager] managedObjectContext];
 }
 
 - (IBAction)didChangeCoffeeView:(id)sender {
@@ -50,47 +54,13 @@
     }
 }
 
-#pragma mark - UIStoryboard
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"addObjectViewControllerSegue"]) {
-        KVZNewObjectViewController *addObjectViewController = segue.destinationViewController;
-        addObjectViewController.delegate = self;
-        
-        KVZCollectionViewDataSource *collectionDataSource = self.collectionViewController.collectionView.dataSource;
-        collectionDataSource.delegate = self;
-        
-        KVZTableViewDataSource *tableDataSource = self.tableViewController.tableView.dataSource;
-        tableDataSource.delegate = self;
-    }
-}
-
-#pragma mark - KVZNewObjectViewControllerDelegate
-
-- (void)addObjectViewController:(KVZNewObjectViewController *)viewController didCreateModelWithTitle:(NSString *)title {
-    [[[KVZArrayDataSource alloc]init] saveNewModelWithName:title];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - KVZTableViewDataSourceDelegate
-
-- (void)tableDataSourceDidChange:(KVZTableViewDataSource *)tableDataSource {
-    [self.tableViewController.tableView reloadData];
-}
-
-#pragma mark - KVZCollectionViewDataSourceDelegate
-
-- (void)collectionDataSourceDidChange:(KVZArrayDataSource *)collectionDataSource {
-    [self.collectionViewController.collectionView reloadData];
-}
-
 #pragma mark - Nested Controller methods
 
 - (void)cycleFromViewController:(UIViewController *)oldController toViewController:(UIViewController *)newController {
     [oldController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
-    float animationTimeInSeconds = 0.2;
     
+    float animationTimeInSeconds = kAnimationDuration;
     [self transitionFromViewController:oldController toViewController:newController
                               duration:animationTimeInSeconds
                                options:0

@@ -8,17 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@class KVZTableViewDataSource;
+@interface KVZTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
-@protocol KVZTableViewDataSourceDelegate <NSObject>
-
-- (void)tableDataSourceDidChange:(KVZTableViewDataSource *)tableDataSource;
-
-@end
-
-@interface KVZTableViewDataSource : NSObject <UITableViewDataSource>
-
-@property (nonatomic, weak) id<KVZTableViewDataSourceDelegate> delegate;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end

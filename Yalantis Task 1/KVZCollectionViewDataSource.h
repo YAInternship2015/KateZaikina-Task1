@@ -8,17 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@class KVZCollectionViewDataSource;
+@interface KVZCollectionViewDataSource : NSObject <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
-@protocol KVZCollectionViewDataSourceDelegate <NSObject>
-
-- (void)collectionDataSourceDidChange:(KVZCollectionViewDataSource *)collectionDataSource;
-
-@end
-
-@interface KVZCollectionViewDataSource : NSObject <UICollectionViewDataSource>
-
-@property (nonatomic, weak) id<KVZCollectionViewDataSourceDelegate> delegate;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
