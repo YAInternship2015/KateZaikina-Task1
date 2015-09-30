@@ -39,6 +39,7 @@
 		80922E3E1B8A118F002BF57C /* KVZNewObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80922E3D1B8A118F002BF57C /* KVZNewObjectViewController.m */; };
 		80922E411B8A29EA002BF57C /* KVZStringValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80922E401B8A29EA002BF57C /* KVZStringValidator.m */; };
 		80922E431B8B6771002BF57C /* defaultCoffee.gif in Resources */ = {isa = PBXBuildFile; fileRef = 80922E421B8B6771002BF57C /* defaultCoffee.gif */; };
+		80EE18421BBBBCD30030B891 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 80EE18411BBBBCD20030B891 /* .gitignore */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		80922E3F1B8A29EA002BF57C /* KVZStringValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVZStringValidator.h; sourceTree = "<group>"; };
 		80922E401B8A29EA002BF57C /* KVZStringValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVZStringValidator.m; sourceTree = "<group>"; };
 		80922E421B8B6771002BF57C /* defaultCoffee.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = defaultCoffee.gif; sourceTree = "<group>"; };
+		80EE18411BBBBCD20030B891 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				802D24461BAC33F300FB6E3A /* KVZCollectionViewController.m */,
 				80922E3C1B8A118F002BF57C /* KVZNewObjectViewController.h */,
 				80922E3D1B8A118F002BF57C /* KVZNewObjectViewController.m */,
+				80EE18411BBBBCD20030B891 /* .gitignore */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				80014A661B75DCD9004A50FB /* Main.storyboard in Resources */,
 				80014A9F1B760BE3004A50FB /* vienne-cappuccino.jpg in Resources */,
 				80922E431B8B6771002BF57C /* defaultCoffee.gif in Resources */,
+				80EE18421BBBBCD30030B891 /* .gitignore in Resources */,
 				80014A9B1B760BE3004A50FB /* irish-coffee.jpg in Resources */,
 				80014A991B760BE3004A50FB /* frappe.jpg in Resources */,
 				80014A6B1B75DCD9004A50FB /* LaunchScreen.xib in Resources */,
